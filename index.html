@@ -1,0 +1,2541 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PolyU Design Subsidy Scheme Portal</title>
+    <meta name="description" content="School of Design Financial Assistance for Enrolled Students & Recent Graduates - interactive application, tracker, and reimbursement vault prototype." />
+    <meta property="og:title" content="PolyU Design Subsidy Scheme Portal" />
+    <meta property="og:description" content="School of Design Financial Assistance for Enrolled Students & Recent Graduates - interactive application, tracker, and reimbursement vault prototype." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+            },
+            colors: {
+              polyu: {
+                dark: '#741523',
+                red: '#8B1D2C',
+                light: '#FDE8E9',
+                accent: '#9E1B32',
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Smooth transitions and accessibility focus rings */
+      *:focus-visible {
+        outline: 2px solid #8b1d2c !important;
+        outline-offset: 2px !important;
+      }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 9999px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+    </style>
+  </head>
+  <body class="bg-[#F8FAFC] text-slate-800 font-sans min-h-screen pb-24 antialiased selection:bg-[#8B1D2C] selection:text-white">
+    <!-- Top Persistent Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white border-b border-slate-200/90 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <!-- Logo Brand Group -->
+        <a href="javascript:void(0)" onclick="navigateTo('screen-dashboard')" class="flex items-center gap-3 group focus:outline-none" aria-label="PolyU Design Application Portal Home">
+          <!-- PolyU Official Logo -->
+          <img
+            src="/public/assets/aistudio/image_bcbd73f0.png"
+            onerror="this.onerror=null;this.src='/assets/aistudio/image_bcbd73f0.png';"
+            alt="PolyU Logo"
+            class="w-9 h-9 sm:w-10 sm:h-10 object-contain flex-shrink-0 group-hover:opacity-90 transition-opacity"
+          />
+          <div class="flex flex-col">
+            <span class="text-sm sm:text-base font-extrabold tracking-tight text-[#8B1D2C] leading-none uppercase">PolyU Design</span>
+            <span id="header-screen-title" class="text-[10px] tracking-[0.2em] font-medium text-slate-500 uppercase mt-0.5 leading-none">SUBSIDY PORTAL</span>
+          </div>
+        </a>
+
+        <!-- Right Quick Actions & Profile -->
+        <div class="flex items-center gap-3 sm:gap-4 relative">
+          <!-- Notification Bell -->
+          <button
+            type="button"
+            onclick="showToast('You have 2 pending audit notifications.')"
+            class="relative p-2 rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors focus:ring-2 focus:ring-[#8B1D2C]"
+            aria-label="View notifications"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
+            <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-[#8B1D2C] rounded-full ring-2 ring-white"></span>
+          </button>
+
+          <!-- User Profile Trigger Button -->
+          <button
+            id="profile-menu-trigger"
+            type="button"
+            onclick="toggleProfileMenu()"
+            class="flex items-center gap-2 p-1 pl-1.5 pr-2.5 rounded-full hover:bg-slate-100 border border-slate-200/80 transition focus:outline-none focus:ring-2 focus:ring-[#8B1D2C]"
+            aria-expanded="false"
+            aria-controls="screen-profile-menu"
+            aria-haspopup="true"
+          >
+            <div class="relative w-8 h-8 rounded-full overflow-hidden ring-1 ring-slate-300">
+              <img
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=128&h=128&q=80"
+                alt="Rachel Tsang profile avatar"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <span class="hidden sm:inline-block text-xs font-semibold text-slate-800">Rachel Tsang</span>
+            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- Screen 5: Profile Menu Dropdown / Popover -->
+          <div
+            id="screen-profile-menu"
+            class="hidden absolute right-0 top-12 mt-2 w-80 sm:w-88 bg-white rounded-2xl shadow-2xl border border-slate-200/90 z-50 overflow-hidden transform transition-all duration-200"
+            role="dialog"
+            aria-label="User Profile and Account Menu"
+          >
+            <!-- Profile Card Header -->
+            <div class="p-5 bg-gradient-to-b from-slate-50 to-white border-b border-slate-100">
+              <div class="flex items-start gap-3.5">
+                <div class="relative w-14 h-14 rounded-full overflow-hidden ring-2 ring-[#8B1D2C]/20 shadow-sm flex-shrink-0">
+                  <img
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&h=160&q=80"
+                    alt="Rachel Tsang"
+                    class="w-full h-full object-cover"
+                  />
+                  <div class="absolute bottom-0 right-0 w-4 h-4 bg-[#8B1D2C] text-white rounded-full flex items-center justify-center text-[10px]">
+                    ✓
+                  </div>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between gap-1">
+                    <h3 class="text-base font-bold text-slate-900 truncate">Rachel Tsang</h3>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[#FEE2E2] text-[#8B1D2C]">
+                      Year 3
+                    </span>
+                  </div>
+                  <p class="text-xs text-slate-600 font-medium truncate mt-0.5">22084912D • Media Design</p>
+                  <p class="text-[11px] text-slate-400 truncate">BA (Hons) Scheme in Design</p>
+                </div>
+              </div>
+
+              <!-- Active Status Pill -->
+              <div class="mt-3.5 flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100/80 border border-slate-200 text-[11px] font-medium text-slate-700">
+                <span class="w-2 h-2 rounded-full bg-[#8B1D2C] animate-pulse"></span>
+                <span>Active Enrolment • Connected to PolyU ID</span>
+              </div>
+            </div>
+
+            <!-- Profile Menu Items -->
+            <div class="p-2 space-y-1">
+              <button
+                type="button"
+                onclick="showToast('Viewing Student Profile (PolyU NetID: 22084912D)')"
+                class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-slate-50 transition text-slate-700 hover:text-slate-900 group"
+              >
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600 group-hover:bg-[#8B1D2C]/10 group-hover:text-[#8B1D2C] transition">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
+                    </svg>
+                  </div>
+                  <span class="text-sm font-semibold">Student Profile</span>
+                </div>
+                <svg class="w-4 h-4 text-slate-400 group-hover:translate-x-0.5 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              <button
+                type="button"
+                onclick="navigateTo('screen-tracker'); closeProfileMenu();"
+                class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-slate-50 transition text-slate-700 hover:text-slate-900 group"
+              >
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600 group-hover:bg-[#8B1D2C]/10 group-hover:text-[#8B1D2C] transition">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                  </div>
+                  <span class="text-sm font-semibold">Past Competitions</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="w-5 h-5 rounded-full bg-[#FEE2E2] text-[#8B1D2C] text-xs font-bold flex items-center justify-center">3</span>
+                  <svg class="w-4 h-4 text-slate-400 group-hover:translate-x-0.5 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </button>
+
+              <button
+                type="button"
+                onclick="navigateTo('screen-vault'); closeProfileMenu();"
+                class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-slate-50 transition text-slate-700 hover:text-slate-900 group"
+              >
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600 group-hover:bg-[#8B1D2C]/10 group-hover:text-[#8B1D2C] transition">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                    </svg>
+                  </div>
+                  <span class="text-sm font-semibold">Settings & Security</span>
+                </div>
+                <svg class="w-4 h-4 text-slate-400 group-hover:translate-x-0.5 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              <div class="pt-1 border-t border-slate-100">
+                <button
+                  type="button"
+                  onclick="showToast('Sign out simulated. NetID SSO session remains locked.')"
+                  class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-rose-50 transition text-[#8B1D2C] group"
+                >
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-rose-100/70 flex items-center justify-center text-[#8B1D2C]">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                      </svg>
+                    </div>
+                    <span class="text-sm font-bold">Sign Out</span>
+                  </div>
+                  <svg class="w-4 h-4 text-[#8B1D2C] group-hover:translate-x-0.5 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Profile Menu Footer -->
+            <div class="px-5 py-3 bg-slate-50 border-t border-slate-100 flex items-center gap-2 text-[11px] text-slate-500">
+              <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>PolyU NetID Authenticated</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Screens Container (Single Page Application) -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+
+      <!-- ========================================== -->
+      <!-- SCREEN 1: 01_Student_Dashboard (Default)   -->
+      <!-- ========================================== -->
+      <section id="screen-dashboard" class="space-y-6" aria-labelledby="dashboard-title">
+        <!-- Student Meta Header Bar -->
+        <div class="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600 pb-1 border-b border-slate-200/60">
+          <div class="flex flex-wrap items-center gap-3">
+            <span class="inline-flex items-center gap-1.5 font-semibold text-slate-700">
+              <span class="w-2 h-2 rounded-full bg-[#8B1D2C]"></span>
+              AY 2024/25 • SEM 2
+            </span>
+            <span class="text-slate-300">|</span>
+            <span class="font-mono text-slate-600">ID: 22084912D</span>
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-[#FEF3C7] text-[#92400E] border border-[#FDE68A]">
+              INTERACTIVE MEDIA
+            </span>
+          </div>
+          <div class="flex items-center gap-1.5 text-emerald-700 font-medium">
+            <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>Verified Student Status</span>
+          </div>
+        </div>
+
+        <!-- Dashboard Hero Title & Start New Application Action -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-[#8B1D2C]">School of Design Subsidy Scheme</span>
+            <h1 id="dashboard-title" class="text-3xl font-extrabold text-slate-900 tracking-tight mt-0.5">Welcome back, Rachel</h1>
+            <p class="text-sm text-slate-500 font-medium">Year 3 • BA (Hons) in Interactive Media</p>
+          </div>
+          <div>
+            <button
+              id="btn-start-application"
+              type="button"
+              onclick="navigateTo('screen-form')"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#8B1D2C] hover:bg-[#741523] active:bg-[#5D101C] text-white font-bold text-sm shadow-sm transition hover:shadow-md cursor-pointer"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
+              </svg>
+              <span>START NEW APPLICATION</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Available Academic Quota Card -->
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <!-- Left Quota Metrics -->
+            <div class="lg:col-span-7 space-y-4">
+              <div>
+                <span class="text-xs uppercase font-bold tracking-wider text-slate-500">Available Academic Quota</span>
+                <div class="flex items-baseline gap-2 mt-1">
+                  <span class="text-4xl font-black text-[#8B1D2C] tracking-tight">$12,500</span>
+                  <span class="text-lg text-slate-400 font-medium">/ 15,000</span>
+                </div>
+              </div>
+
+              <!-- Single-color Quota Progress Bar -->
+              <div class="w-full h-3.5 bg-slate-100 rounded-full overflow-hidden" role="progressbar" aria-valuenow="7300" aria-valuemin="0" aria-valuemax="15000">
+                <div class="bg-[#8B1D2C] h-full rounded-full" style="width: 48.67%" title="Quota in use: $7,300 / $15,000"></div>
+              </div>
+            </div>
+
+            <!-- Right Endorsed Competitions Box -->
+            <div class="lg:col-span-5 bg-slate-50 rounded-xl p-4 border border-slate-200/80 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-700 uppercase tracking-wide">Endorsed Global Competitions</span>
+                <span class="text-xs font-bold text-[#8B1D2C]">Tier 1 & Tier 2</span>
+              </div>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2 py-0.5 bg-white border border-slate-200 rounded text-xs font-medium text-slate-700 shadow-2xs">Red Dot</span>
+                <span class="px-2 py-0.5 bg-white border border-slate-200 rounded text-xs font-medium text-slate-700 shadow-2xs">iF Design</span>
+                <span class="px-2 py-0.5 bg-white border border-slate-200 rounded text-xs font-medium text-slate-700 shadow-2xs">Core77</span>
+                <span class="px-2 py-0.5 bg-white border border-slate-200 rounded text-xs font-medium text-slate-700 shadow-2xs">D&AD New Blood</span>
+                <span class="px-2 py-0.5 bg-white border border-slate-200 rounded text-xs font-medium text-slate-700 shadow-2xs">ADC Awards</span>
+              </div>
+              <p class="text-[11px] text-slate-500 leading-relaxed">
+                Covers 80% submission fees + travel support for shortlisted finalists. Average review: 3-5 working days.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Standard Lifecycle Progression Bar -->
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <h2 class="text-sm font-bold text-slate-900">Standard Lifecycle</h2>
+            <span class="px-2 py-0.5 bg-slate-100 text-slate-600 rounded text-xs font-semibold">3-5d SLA</span>
+          </div>
+
+          <!-- 4 Lifecycle Step Indicators -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <!-- Step 1 -->
+            <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
+              <div class="w-8 h-8 rounded-full bg-[#8B1D2C] text-white flex items-center justify-center font-bold text-sm flex-shrink-0">
+                ✓
+              </div>
+              <div class="min-w-0">
+                <p class="text-[16px] font-bold text-slate-800 leading-tight">1. Apply</p>
+                <p class="text-[11px] text-slate-500 truncate mt-0.5">Verified</p>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
+              <div class="w-8 h-8 rounded-full bg-[#8B1D2C] text-white flex items-center justify-center font-bold text-sm flex-shrink-0">
+                ✓
+              </div>
+              <div class="min-w-0">
+                <p class="text-[16px] font-bold text-slate-800 leading-tight">2. Review</p>
+                <p class="text-[11px] text-slate-500 truncate mt-0.5">Committee</p>
+              </div>
+            </div>
+
+            <!-- Step 3 (Action Due Highlight) -->
+            <div class="flex items-center gap-3 p-3 rounded-xl bg-[#FEE2E2]/70 border border-[#FCA5A5] ring-1 ring-[#8B1D2C]/20">
+              <div class="w-8 h-8 rounded-full bg-[#8B1D2C] text-white flex items-center justify-center font-black text-sm flex-shrink-0">
+                3
+              </div>
+              <div class="min-w-0">
+                <p class="text-[16px] font-bold text-[#8B1D2C] leading-tight">3. Vault</p>
+                <p class="text-[11px] font-bold text-[#8B1D2C] truncate mt-0.5">Action Due</p>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100 opacity-60">
+              <div class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center font-bold text-sm flex-shrink-0">
+                4
+              </div>
+              <div class="min-w-0">
+                <p class="text-[16px] font-bold text-slate-600 leading-tight">4. Payout</p>
+                <p class="text-[11px] text-slate-400 truncate mt-0.5">FPS Release</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2-Column Section: Active Subsidies (Left) & Quick Action Sidebars (Right) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <!-- Left: Active Subsidies Cards -->
+          <div class="lg:col-span-7 space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <h2 class="text-base font-bold text-slate-900">Active Subsidies</h2>
+                <span class="px-2 py-0.5 rounded-full bg-rose-100 text-[#8B1D2C] text-xs font-bold">2 Ongoing</span>
+              </div>
+              <button type="button" onclick="navigateTo('screen-tracker')" class="text-xs font-bold text-[#8B1D2C] hover:underline flex items-center gap-1">
+                <span>View All Archive</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+
+            <!-- Active Subsidy Card 1: iF Student Design Award 2025 (Action Required) -->
+            <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden hover:shadow-md transition">
+              <div class="p-5 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-[#FEE2E2] text-[#991B1B]">
+                      ACTION REQUIRED
+                    </span>
+                    <span class="text-[11px] text-slate-400 font-mono">Ref: SD-2025-0849-iF</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-[10px] uppercase font-bold text-slate-400 block">Sanctioned Amount</span>
+                    <span class="text-lg font-black text-[#8B1D2C]">$4,800</span>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-base font-bold text-slate-900 truncate">iF Student Design Award 2025</h3>
+                  <p class="text-xs text-slate-500 truncate mt-0.5">Sustainable Architecture & Modular Prefab System</p>
+                </div>
+              </div>
+
+              <!-- Action Bar -->
+              <div class="px-5 py-3 bg-rose-50/60 border-t border-rose-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                <div class="flex items-center gap-2 text-xs text-slate-700">
+                  <svg class="w-4 h-4 text-[#8B1D2C] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Dean's Office sanctioned. Awaiting FPS / bank account confirmation in Vault.</span>
+                </div>
+                <button
+                  type="button"
+                  onclick="navigateTo('screen-vault')"
+                  class="w-full sm:w-auto px-4 py-1.5 rounded-lg bg-[#8B1D2C] hover:bg-[#741523] text-white text-xs font-bold transition flex-shrink-0 shadow-2xs"
+                >
+                  ENTER VAULT DETAILS
+                </button>
+              </div>
+            </div>
+
+            <!-- Active Subsidy Card 2: Red Dot Award (In Review) -->
+            <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden hover:shadow-md transition">
+              <div class="p-5 space-y-2">
+                <div class="flex flex-wrap items-center justify-between gap-1">
+                  <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-[#FEF3C7] text-[#92400E]">
+                      IN REVIEW
+                    </span>
+                    <span class="text-[11px] text-slate-400 font-mono">Ref: SD-2025-0912-RD</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-[10px] uppercase font-bold text-slate-400 block">Requested Grant</span>
+                    <span class="text-lg font-black text-slate-900">$2,400</span>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-base font-bold text-slate-900 truncate">Red Dot Award: Brands & Communication</h3>
+                  <p class="text-xs text-slate-500 truncate mt-0.5">Spatial Wayfinding & Ambient UI System</p>
+                </div>
+              </div>
+
+              <!-- Action Bar -->
+              <div class="px-5 py-3 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                <div class="flex items-center gap-2 text-xs text-slate-600">
+                  <svg class="w-4 h-4 text-amber-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Stage 2 of 4: Faculty Endorsement verified by Dr. K. Wong</span>
+                </div>
+                <button
+                  type="button"
+                  onclick="navigateTo('screen-tracker')"
+                  class="text-xs font-bold text-[#8B1D2C] hover:underline flex items-center gap-1 flex-shrink-0"
+                >
+                  <span>Audit Log</span>
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Sidebar Cards (Vault Link, Honorarium, Helpdesk) -->
+          <div class="lg:col-span-5 space-y-4">
+            <!-- Reimbursement Vault Quick Action -->
+            <div
+              onclick="navigateTo('screen-vault')"
+              class="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-sm hover:border-[#8B1D2C]/40 hover:shadow-md transition cursor-pointer group"
+            >
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center text-[#8B1D2C] group-hover:bg-[#8B1D2C] group-hover:text-white transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="text-sm font-bold text-slate-900 group-hover:text-[#8B1D2C] transition">REIMBURSEMENT VAULT</h3>
+                      <span class="w-2 h-2 rounded-full bg-[#8B1D2C]"></span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-0.5">FPS identification credentials & active disbursement authorization.</p>
+                  </div>
+                </div>
+                <svg class="w-5 h-5 text-slate-400 group-hover:text-[#8B1D2C] group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Outbox & Logs Quick Action -->
+            <div
+              onclick="navigateTo('screen-tracker')"
+              class="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-sm hover:border-slate-300 hover:shadow-md transition cursor-pointer group"
+            >
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-600 group-hover:bg-slate-200 transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-sm font-bold text-slate-900">OUTBOX & LOGS</h3>
+                    <p class="text-xs text-slate-500 mt-0.5">4 Total submissions • Dean's signed approvals & invoice archive.</p>
+                  </div>
+                </div>
+                <svg class="w-5 h-5 text-slate-400 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Honorarium Program Card -->
+            <div class="bg-[#2D231E] rounded-2xl p-5 text-white shadow-md border border-[#44362D] space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="w-8 h-8 rounded-lg bg-[#3F312A] flex items-center justify-center text-[#D4A054]">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h8V3a1 1 0 112 0v1h1a2 2 0 012 2v2a5 5 0 01-4 4.9 6.002 6.002 0 01-5 4.1v1.1h3a1 1 0 110 2H6a1 1 0 110-2h3v-1.1a6.002 6.002 0 01-5-4.1A5 5 0 010 8V6a2 2 0 012-2h1V3a1 1 0 011-1zm13 6V6h-1v3.8a3 3 0 002-1.8zM2 6v2a3 3 0 002 1.8V6H2zm8 10a4 4 0 100-8 4 4 0 000 8z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-[#42332B] text-[#D4A054] border border-[#D4A054]/40">
+                  HONORARIUM PROGRAM
+                </span>
+              </div>
+              <div>
+                <h3 class="text-base font-extrabold tracking-tight">WON A DESIGN AWARD RECENTLY?</h3>
+                <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                  Upload your official award certificate or jury results within 30 days of announcement to claim supplementary School of Design honorarium grants.
+                </p>
+              </div>
+              <button
+                type="button"
+                onclick="openUploadAwardModal()"
+                class="w-full py-2.5 px-4 rounded-xl bg-[#C0833C] hover:bg-[#A86F2E] active:bg-[#925F24] text-white text-xs font-bold tracking-wide transition flex items-center justify-center gap-2 shadow-sm"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                </svg>
+                <span>UPLOAD AWARD CERTIFICATE</span>
+              </button>
+            </div>
+
+            <!-- Subsidy Scheme Helpdesk Card -->
+            <div class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-3">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-rose-50 flex items-center justify-center text-[#8B1D2C]">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wide">SUBSIDY SCHEME HELPDESK</h3>
+                  <p class="text-xs text-slate-500">School of Design Secretariat</p>
+                </div>
+              </div>
+
+              <div class="space-y-2 text-xs text-slate-600">
+                <div class="flex items-start gap-2">
+                  <svg class="w-4 h-4 text-slate-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span>Jockey Club Innovation Tower, Room V810</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  <span>+852 2766 5432 (ext. 5432)</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <a href="mailto:sd.subsidy@polyu.edu.hk" class="text-[#8B1D2C] hover:underline font-medium">sd.subsidy@polyu.edu.hk</a>
+                </div>
+              </div>
+
+              <div class="pt-2 border-t border-slate-100 text-[11px] text-slate-400">
+                Office Hours: Monday - Friday, 09:00 - 17:30 (Excl. Public Holidays).
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- SCREEN 2: 02_Application_Form             -->
+      <!-- ========================================== -->
+      <section id="screen-form" class="hidden space-y-6" aria-labelledby="form-heading">
+        <!-- Sub-navigation action bar -->
+        <div class="flex flex-wrap items-center justify-between gap-3 text-xs pb-1 border-b border-slate-200/60">
+          <button
+            type="button"
+            onclick="navigateTo('screen-dashboard')"
+            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-bold tracking-wide transition shadow-2xs"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            <span>BACK TO DASHBOARD</span>
+          </button>
+
+          <div class="flex items-center gap-2 text-slate-500 font-medium">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span id="form-autosave-status">Draft auto-saved 14s ago</span>
+          </div>
+
+          <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 text-[#8B1D2C] border border-[#FEE2E2] font-semibold">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>REVIEW SLA: 3–5 WORKING DAYS</span>
+          </div>
+        </div>
+
+        <!-- Hero Form Header Card -->
+        <div class="bg-[#8B1D2C] rounded-2xl p-6 text-white shadow-md relative overflow-hidden">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
+            <div>
+              <div class="flex items-center gap-2 text-xs font-semibold text-rose-200 tracking-wider">
+                <span>AY 2025/26</span>
+                <span>•</span>
+                <span>FORM SD-AF-25</span>
+              </div>
+              <h1 id="form-heading" class="text-2xl sm:text-3xl font-extrabold tracking-tight mt-1 text-white">Competition & Award Subsidy Scheme</h1>
+              <p class="text-xs sm:text-sm text-rose-100/90 mt-1 max-w-xl">
+                School of Design Financial Assistance for Enrolled Students & 2025 Recent Graduates.
+              </p>
+            </div>
+            <div class="bg-[#741523] rounded-xl p-3.5 px-4 text-right border border-rose-300/20 flex-shrink-0">
+              <span class="text-[10px] uppercase font-bold tracking-wider text-rose-200 block">APPLICATION REF</span>
+              <span class="text-xs font-mono font-bold text-white block">SD-SUB-2025-0914</span>
+              <span class="text-[10px] uppercase font-bold tracking-wider text-rose-200 block mt-1">REMAINING CAP</span>
+              <span class="text-sm font-black text-white">$12,500 <span class="text-[11px] font-normal text-rose-200">/ 15,000</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Interactive Form -->
+        <form id="subsidy-application-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+
+          <!-- Section 01: Applicant's Information -->
+          <fieldset class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm space-y-5">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-[#8B1D2C] text-white flex items-center justify-center font-bold text-sm">
+                  01
+                </span>
+                <div>
+                  <h2 class="text-base font-bold text-slate-900">Applicant's Information</h2>
+                  <p class="text-xs text-slate-500">Authenticated credentials via PolyU NetID Single Sign-On</p>
+                </div>
+              </div>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700 border border-slate-200">
+                <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                NETID VERIFIED
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Title & Full Name -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">Title & Full Name</label>
+                <div class="flex gap-2">
+                  <div class="inline-flex rounded-lg border border-slate-200 p-0.5 bg-slate-50">
+                    <button
+                      type="button"
+                      id="prefix-mr"
+                      onclick="setPrefix('Mr')"
+                      class="px-2.5 py-1.5 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition"
+                    >
+                      Mr
+                    </button>
+                    <button
+                      type="button"
+                      id="prefix-ms"
+                      onclick="setPrefix('Ms')"
+                      class="px-2.5 py-1.5 rounded-md text-xs font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30"
+                    >
+                      Ms
+                    </button>
+                  </div>
+                  <input
+                    type="text"
+                    id="applicant-name"
+                    name="applicant_name"
+                    value="Rachel Tsang"
+                    required
+                    class="flex-1 px-3.5 py-2 rounded-lg border border-slate-200 text-sm font-semibold text-slate-800 bg-slate-50/50 focus:bg-white focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
+                  />
+                </div>
+              </div>
+
+              <!-- Student ID Number -->
+              <div>
+                <label for="student-id" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">Student ID Number</label>
+                <input
+                  type="text"
+                  id="student-id"
+                  name="student_id"
+                  value="22084912D"
+                  readonly
+                  class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-sm font-mono font-semibold text-slate-700 bg-slate-100 cursor-not-allowed"
+                />
+              </div>
+
+              <!-- Telephone Number (Mobile) -->
+              <div>
+                <label for="telephone" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">Telephone Number (Mobile)</label>
+                <input
+                  type="tel"
+                  id="telephone"
+                  name="telephone"
+                  value="+852 9123 4567"
+                  required
+                  class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-sm font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
+                />
+              </div>
+
+              <!-- PolyU Student Email -->
+              <div>
+                <label for="student-email" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">PolyU Student Email</label>
+                <input
+                  type="email"
+                  id="student-email"
+                  name="student_email"
+                  value="rachel.tsang@connect.polyu.hk"
+                  readonly
+                  class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-sm font-semibold text-slate-700 bg-slate-100 cursor-not-allowed"
+                />
+              </div>
+            </div>
+
+            <!-- Study Year & Status -->
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-2">Study Year & Status</label>
+              <div class="grid grid-cols-2 sm:grid-cols-5 gap-2" id="study-year-group">
+                <button type="button" onclick="setStudyYear(this, 'Year 1')" class="year-btn py-2 px-3 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50">Year 1</button>
+                <button type="button" onclick="setStudyYear(this, 'Year 2')" class="year-btn py-2 px-3 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50">Year 2</button>
+                <button type="button" onclick="setStudyYear(this, 'Year 3')" class="year-btn active py-2 px-3 rounded-lg border-2 border-[#8B1D2C] bg-rose-50/50 text-xs font-bold text-[#8B1D2C]">Year 3</button>
+                <button type="button" onclick="setStudyYear(this, 'Year 4')" class="year-btn py-2 px-3 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50">Year 4</button>
+                <button type="button" onclick="setStudyYear(this, '2025 Grad')" class="year-btn py-2 px-3 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50">2025 Grad</button>
+              </div>
+            </div>
+
+            <!-- BA (Hons) Scheme in Design Discipline -->
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <label class="block text-xs font-bold uppercase tracking-wide text-slate-700">BA (Hons) Scheme in Design Discipline</label>
+                <span class="text-[11px] text-slate-400">Select enrolled specialism</span>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="discipline-grid">
+                <!-- 12 Disciplines as in Figma mockup -->
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                  <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
+                  <span class="truncate">Advertising Design</span>
+                </button>
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                  <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
+                  <span class="truncate">Communication</span>
+                </button>
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                  <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
+                  <span class="truncate">Environment Design</span>
+                </button>
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                  <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
+                  <span class="truncate">Information Design</span>
+                </button>
+
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                  <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
+                  <span class="truncate">Interaction Design</span>
+                </button>
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                  <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
+                  <span class="truncate">Interior Design</span>
+                </button>
+                <!-- Selected: Media Design -->
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn active p-2.5 rounded-lg border-2 border-[#8B1D2C] bg-rose-50/40 text-left text-xs font-bold text-[#8B1D2C] flex items-center gap-2">
+                  <span class="w-3.5 h-3.5 rounded-full border-4 border-[#8B1D2C] bg-white flex-shrink-0 disc-radio"></span>
+                  <span class="truncate">Media Design</span>
+                </button>
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                  <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
+                  <span class="truncate">Product Design</span>
+                </button>
+
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                  <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
+                  <span class="truncate">Product Experience</span>
+                </button>
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                  <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
+                  <span class="truncate">Service Design</span>
+                </button>
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                  <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
+                  <span class="truncate">Social Design</span>
+                </button>
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                  <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
+                  <span class="truncate">Other Specialism</span>
+                </button>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Section 02: Competition / Award Details -->
+          <fieldset class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm space-y-5">
+            <div class="flex items-center gap-3 border-b border-slate-100 pb-3">
+              <span class="w-8 h-8 rounded-full bg-[#8B1D2C] text-white flex items-center justify-center font-bold text-sm">
+                02
+              </span>
+              <div>
+                <h2 class="text-base font-bold text-slate-900">Competition / Award Details</h2>
+                <p class="text-xs text-slate-500">External organizer credentials and recognition tier</p>
+              </div>
+            </div>
+
+            <!-- Title of Competition -->
+            <div>
+              <label for="competition-title" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                Title of Competition / Award <span class="text-[#8B1D2C]">*</span>
+              </label>
+              <input
+                type="text"
+                id="competition-title"
+                name="competition_title"
+                value="Red Dot Award: Brands & Communication Design 2025"
+                required
+                class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 text-sm font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
+              />
+            </div>
+
+            <!-- Official Entry URL & Category -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label for="entry-url" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                  Official Entry URL <span class="text-[#8B1D2C]">*</span>
+                </label>
+                <div class="relative">
+                  <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                    </svg>
+                  </span>
+                  <input
+                    type="url"
+                    id="entry-url"
+                    name="entry_url"
+                    value="https://www.red-dot.org/brands-communica"
+                    required
+                    class="w-full pl-9 pr-3.5 py-2 rounded-lg border border-slate-200 text-sm font-mono text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="category" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">Category (If Any)</label>
+                <input
+                  type="text"
+                  id="category"
+                  name="category"
+                  value="Digital Media / Interface & User Experience"
+                  class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-sm text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
+                />
+              </div>
+            </div>
+
+            <!-- Recognition Level & Result Announcement Date -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-2">Recognition Level</label>
+                <div class="grid grid-cols-3 gap-2" id="recognition-level-group">
+                  <button type="button" onclick="setRecognition(this, 'Local')" class="rec-btn py-2 px-3 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50">Local</button>
+                  <button type="button" onclick="setRecognition(this, 'National')" class="rec-btn py-2 px-3 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50">National</button>
+                  <button type="button" onclick="setRecognition(this, 'International')" class="rec-btn active py-2 px-3 rounded-lg border-2 border-[#8B1D2C] bg-rose-50/50 text-xs font-bold text-[#8B1D2C]">International</button>
+                </div>
+              </div>
+
+              <div>
+                <label for="result-date" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                  Result Announcement Date <span class="text-[#8B1D2C]">*</span>
+                </label>
+                <div class="relative">
+                  <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </span>
+                  <input
+                    type="text"
+                    id="result-date"
+                    name="result_date"
+                    value="15/10/2025"
+                    required
+                    class="w-full pl-9 pr-3.5 py-2 rounded-lg border border-slate-200 text-sm font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
+                  />
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Section 03: Project Details & Expense Request -->
+          <fieldset class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm space-y-5">
+            <div class="flex items-center gap-3 border-b border-slate-100 pb-3">
+              <span class="w-8 h-8 rounded-full bg-[#8B1D2C] text-white flex items-center justify-center font-bold text-sm">
+                03
+              </span>
+              <div>
+                <h2 class="text-base font-bold text-slate-900">Project Details & Expense Request</h2>
+                <p class="text-xs text-slate-500">Academic endorsement, team members, and estimated fee breakdown</p>
+              </div>
+            </div>
+
+            <!-- Title of Submitted Project -->
+            <div>
+              <label for="project-title" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                Title of Submitted Project <span class="text-[#8B1D2C]">*</span>
+              </label>
+              <input
+                type="text"
+                id="project-title"
+                name="project_title"
+                value="Sensory Oasis: Multimodal Adaptive Workspace"
+                required
+                class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 text-sm font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
+              />
+            </div>
+
+            <!-- Group Project Toggle & Members -->
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wide text-slate-700">Is It a Group Project?</span>
+                <div class="inline-flex rounded-lg border border-slate-200 p-0.5 bg-slate-50">
+                  <button type="button" id="grp-no" onclick="setGroupProject(false)" class="px-3 py-1 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition">No</button>
+                  <button type="button" id="grp-yes" onclick="setGroupProject(true)" class="px-3 py-1 rounded-md text-xs font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30">Yes</button>
+                </div>
+              </div>
+
+              <div id="group-members-field">
+                <label for="group-members" class="block text-xs font-semibold text-slate-600 mb-1">Other Group Member(s) from School of Design</label>
+                <input
+                  type="text"
+                  id="group-members"
+                  name="group_members"
+                  value="Marcus Leung (22081145D), Chloe Wong (22079934D)"
+                  class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-sm text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
+                />
+                <p class="text-[11px] text-slate-400 mt-1">Please list full name & PolyU student ID separated by commas.</p>
+              </div>
+            </div>
+
+            <!-- Coursework & Endorser Name -->
+            <div class="space-y-3 pt-2 border-t border-slate-100">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wide text-slate-700">Is This Coursework from a PolyU Subject?</span>
+                <div class="inline-flex rounded-lg border border-slate-200 p-0.5 bg-slate-50">
+                  <button type="button" id="cw-no" onclick="setCoursework(false)" class="px-3 py-1 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition">No</button>
+                  <button type="button" id="cw-yes" onclick="setCoursework(true)" class="px-3 py-1 rounded-md text-xs font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30">Yes</button>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label for="subject-title" class="block text-xs font-semibold text-slate-600 mb-1">Subject Code & Title</label>
+                  <input
+                    type="text"
+                    id="subject-title"
+                    name="subject_title"
+                    value="SD3102 Advanced Interaction Studio"
+                    class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-sm text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
+                  />
+                </div>
+                <div>
+                  <label for="tutor-name" class="block text-xs font-semibold text-slate-600 mb-1">Tutor / Endorser Name</label>
+                  <input
+                    type="text"
+                    id="tutor-name"
+                    name="tutor_name"
+                    value="Dr. K. Wong"
+                    class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-sm text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Applying for Subsidy Grant Items -->
+            <div class="pt-2 border-t border-slate-100 space-y-3">
+              <label class="block text-xs font-bold uppercase tracking-wide text-slate-700">Applying for Subsidy Grant Item(s)</label>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Card 1: Entrance Fee's Subsidy (Checked) -->
+                <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/60 space-y-3">
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" id="check-entrance" checked onchange="toggleSubsidyItem('entrance')" class="w-4 h-4 text-[#8B1D2C] rounded border-slate-300 focus:ring-[#8B1D2C]" />
+                    <span class="text-xs font-bold text-slate-800 uppercase tracking-wide">Entrance Fee's Subsidy</span>
+                  </label>
+                  <div class="grid grid-cols-2 gap-2" id="entrance-fields">
+                    <div>
+                      <span class="block text-[10px] uppercase font-bold text-slate-400 mb-1">CURRENCY</span>
+                      <select class="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold bg-white text-slate-700">
+                        <option>HKD (HK$)</option>
+                        <option>USD ($)</option>
+                        <option>EUR (€)</option>
+                      </select>
+                    </div>
+                    <div>
+                      <span class="block text-[10px] uppercase font-bold text-slate-400 mb-1">CLAIM AMOUNT</span>
+                      <input type="number" id="claim-entrance-amount" value="2400" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-mono font-bold text-slate-800" />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 2: Physical Model Shipping Allowance (Unchecked) -->
+                <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/60 space-y-3">
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" id="check-shipping" onchange="toggleSubsidyItem('shipping')" class="w-4 h-4 text-[#8B1D2C] rounded border-slate-300 focus:ring-[#8B1D2C]" />
+                    <span class="text-xs font-bold text-slate-800 uppercase tracking-wide">Physical Model Shipping Allowance</span>
+                  </label>
+                  <div>
+                    <span class="block text-[10px] uppercase font-bold text-slate-400 mb-1">ESTIMATED AMOUNT (HK$)</span>
+                    <input type="number" id="claim-shipping-amount" value="0.00" disabled class="w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-mono font-bold text-slate-400 bg-slate-100 cursor-not-allowed" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Section 04: Declarations & Undertakings -->
+          <fieldset class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm space-y-5">
+            <div class="flex items-center gap-3 border-b border-slate-100 pb-3">
+              <span class="w-8 h-8 rounded-full bg-[#8B1D2C] text-white flex items-center justify-center font-bold text-sm">
+                04
+              </span>
+              <div>
+                <h2 class="text-base font-bold text-slate-900">Declarations & Undertakings</h2>
+                <p class="text-xs text-slate-500">Official compliance certifications and digital authorization</p>
+              </div>
+            </div>
+
+            <!-- Mandatory Legal Checkboxes -->
+            <div class="space-y-3">
+              <label class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 cursor-pointer hover:bg-slate-100/70 transition">
+                <input
+                  type="checkbox"
+                  id="decl-1"
+                  required
+                  checked
+                  class="mt-1 w-4 h-4 text-[#8B1D2C] rounded border-slate-300 focus:ring-[#8B1D2C]"
+                />
+                <span class="text-xs text-slate-700 leading-relaxed">
+                  I declare that this entry is <strong class="underline decoration-[#8B1D2C] decoration-2">not</strong> supported by any other PolyU or governmental external financial scheme(s).
+                </span>
+              </label>
+
+              <label class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 cursor-pointer hover:bg-slate-100/70 transition">
+                <input
+                  type="checkbox"
+                  id="decl-2"
+                  required
+                  checked
+                  class="mt-1 w-4 h-4 text-[#8B1D2C] rounded border-slate-300 focus:ring-[#8B1D2C]"
+                />
+                <span class="text-xs text-slate-700 leading-relaxed">
+                  I confirm that this application complies strictly with the terms and regulations of the Scheme document. I understand and agree that should there be any violation of the terms the application or any approved amount shall be canceled immediately.
+                </span>
+              </label>
+            </div>
+
+            <!-- Signatures Column Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+              <!-- Signature 1: Applicant -->
+              <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-2">
+                <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 block">SIGNATURE OF APPLICANT</span>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-base font-bold text-[#8B1D2C]">Rachel Tsang</p>
+                    <p class="text-xs text-slate-500">Date: 18/02/2025</p>
+                  </div>
+                  <div class="w-8 h-8 rounded-full bg-rose-100 text-[#8B1D2C] flex items-center justify-center">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                </div>
+                <p class="text-[11px] text-slate-400">Secured via PolyU Single Sign-On (NetID: racheltsang)</p>
+              </div>
+
+              <!-- Signature 2: Academic Endorser -->
+              <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-2">
+                <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 block">ASSIGNED ACADEMIC ENDORSER</span>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-base font-bold text-slate-800">Dr. K. Wong</p>
+                    <p class="text-xs text-slate-500">Subject Tutor • SD3102 Studio</p>
+                  </div>
+                  <div class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                </div>
+                <p class="text-[11px] text-slate-400">Digital endorsement request will trigger via university email on submission.</p>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Form Action Footer Bar -->
+          <div class="sticky bottom-20 z-30 bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200/90 p-4 shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs font-bold text-slate-900">Ready for Departmental Submission</p>
+                <p class="text-[11px] text-slate-500">All 4 mandatory sections completed</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3 w-full sm:w-auto">
+              <button
+                type="button"
+                onclick="saveDraft()"
+                class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl border border-[#8B1D2C] text-[#8B1D2C] hover:bg-rose-50 text-xs font-bold transition tracking-wide"
+              >
+                SAVE DRAFT
+              </button>
+              <button
+                type="submit"
+                id="btn-submit-app"
+                class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-[#8B1D2C] hover:bg-[#741523] text-white text-xs font-bold transition shadow-sm hover:shadow"
+              >
+                <span>SUBMIT APPLICATION</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </form>
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- SCREEN 3: 03_tracker (Application Tracker) -->
+      <!-- ========================================== -->
+      <section id="screen-tracker" class="hidden space-y-6" aria-labelledby="tracker-heading">
+        <!-- Tracker Top Banner -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-8 flex items-start gap-4">
+            <div class="w-1.5 h-16 bg-[#8B1D2C] rounded-full flex-shrink-0 mt-1"></div>
+            <div>
+              <div class="flex items-center gap-2 text-xs text-slate-500 font-medium">
+                <span class="font-mono">NetID: 22084912D</span>
+                <span>•</span>
+                <span>BA (Hons) Scheme in Design</span>
+              </div>
+              <h1 id="tracker-heading" class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mt-0.5">Application & Reimbursement Tracker</h1>
+              <p class="text-xs sm:text-sm text-slate-500 mt-1">
+                Real-time status tracking and financial audit pipeline for international design accolades.
+              </p>
+            </div>
+          </div>
+
+          <!-- Annual Subsidy Cap Mini Card -->
+          <div class="lg:col-span-4 bg-white rounded-2xl border border-slate-200/90 p-4 shadow-sm space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400">ANNUAL SUBSIDY CAP</span>
+              <span class="text-xs font-bold text-slate-800">$12,500 <span class="text-slate-400 font-normal">/ 15,000</span></span>
+            </div>
+            <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+              <div class="bg-[#8B1D2C] h-full" style="width: 83.3%"></div>
+            </div>
+            <div class="flex justify-end text-[11px] text-slate-500">
+              <span class="font-bold text-[#8B1D2C]">83.3% remaining</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lifecycle Verification Stages Bar -->
+        <div class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-700">Lifecycle Verification Stages</h2>
+            <span class="text-xs text-slate-500">Standard turnaround SLA: 3–5 working days</span>
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center gap-3">
+              <span class="w-7 h-7 rounded-lg bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center">1</span>
+              <div>
+                <p class="text-xs font-bold text-slate-800">Received</p>
+                <p class="text-[11px] text-slate-500">Portal intake triage</p>
+              </div>
+            </div>
+            <div class="p-3 rounded-xl bg-amber-50 border border-amber-200 flex items-center gap-3">
+              <span class="w-7 h-7 rounded-lg bg-[#FEF3C7] text-[#92400E] font-bold text-xs flex items-center justify-center">2</span>
+              <div>
+                <p class="text-xs font-bold text-amber-900">Tutor Review</p>
+                <p class="text-[11px] text-amber-700">Academic audit</p>
+              </div>
+            </div>
+            <div class="p-3 rounded-xl bg-blue-50 border border-blue-100 flex items-center gap-3">
+              <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center">3</span>
+              <div>
+                <p class="text-xs font-bold text-blue-900">Dean Endorsement</p>
+                <p class="text-[11px] text-blue-700">Executive approval</p>
+              </div>
+            </div>
+            <div class="p-3 rounded-xl bg-purple-50 border border-purple-100 flex items-center gap-3">
+              <span class="w-7 h-7 rounded-lg bg-purple-100 text-purple-700 font-bold text-xs flex items-center justify-center">4</span>
+              <div>
+                <p class="text-xs font-bold text-purple-900">Vault Payout</p>
+                <p class="text-[11px] text-purple-700">FPS / Bank release</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+          <div class="flex items-center gap-2 overflow-x-auto" id="tracker-filter-group">
+            <button type="button" onclick="filterTracker(this, 'all')" class="tracker-filter active px-4 py-1.5 rounded-full bg-[#8B1D2C] text-white text-xs font-bold shadow-2xs">All Claims 3</button>
+            <button type="button" onclick="filterTracker(this, 'pending')" class="tracker-filter px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 text-xs font-semibold">Pending Review 1</button>
+            <button type="button" onclick="filterTracker(this, 'approved')" class="tracker-filter px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 text-xs font-semibold">Approved 1</button>
+            <button type="button" onclick="filterTracker(this, 'disbursed')" class="tracker-filter px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 text-xs font-semibold">Disbursed 1</button>
+          </div>
+          <span class="text-xs text-slate-400 font-medium">Sorted by: Recent Activity</span>
+        </div>
+
+        <!-- Submissions List -->
+        <div class="space-y-4">
+          <h2 class="text-sm font-bold uppercase tracking-wider text-slate-700">Active Submissions (2)</h2>
+
+          <!-- Submission Card 1: iF Student Design Award 2025 -->
+          <div class="tracker-card approved bg-white rounded-2xl border-t-4 border-t-[#8B1D2C] border-x border-b border-slate-200/90 shadow-sm p-6 space-y-5">
+            <div class="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-mono font-semibold text-slate-500">Ref: SD-SUB-2025-0849</span>
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#FEE2E2] text-[#991B1B]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#8B1D2C]"></span>
+                    Approved • Ready for Vault Payout
+                  </span>
+                </div>
+                <h3 class="text-xl font-extrabold text-slate-900 mt-1">iF Student Design Award 2025</h3>
+                <p class="text-xs text-slate-500 mt-0.5">Category: Concept Design • Entry Title: "Aura: Ambient Haptic Wayfinder for Visually Impaired"</p>
+              </div>
+              <div class="text-right">
+                <span class="text-[10px] uppercase font-bold text-slate-400 block">APPROVED SUBSIDY</span>
+                <span class="text-2xl font-black text-[#8B1D2C]">$4,800</span>
+              </div>
+            </div>
+
+            <!-- Audit Workflow Milestones (3 of 4 Completed) -->
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wide text-slate-700">Audit Workflow Milestones</span>
+                <span class="inline-flex items-center gap-1 text-xs font-bold text-[#8B1D2C]">
+                  <svg class="w-4 h-4 text-[#8B1D2C]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                  3 of 4 Completed
+                </span>
+              </div>
+
+              <!-- Milestone Timeline Items -->
+              <div class="space-y-3 relative pl-6 border-l-2 border-slate-200 ml-2">
+                <!-- Step 1 -->
+                <div class="relative">
+                  <div class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full bg-[#8B1D2C] text-white flex items-center justify-center text-[10px] font-bold">
+                    ✓
+                  </div>
+                  <div class="flex flex-wrap items-baseline justify-between gap-1">
+                    <h4 class="text-xs font-bold text-slate-800">Step 1: Application Form & Registration Proof Received</h4>
+                    <span class="text-[11px] text-slate-400 font-mono">12 Feb 2025</span>
+                  </div>
+                  <p class="text-[11px] text-slate-500 mt-0.5">Validated entry dossier, official competition receipt, and design board submission.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative">
+                  <div class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full bg-[#8B1D2C] text-white flex items-center justify-center text-[10px] font-bold">
+                    ✓
+                  </div>
+                  <div class="flex flex-wrap items-baseline justify-between gap-1">
+                    <h4 class="text-xs font-bold text-slate-800">Step 2: Tutor Academic Endorsement</h4>
+                    <span class="text-[11px] text-slate-400 font-mono">14 Feb 2025</span>
+                  </div>
+                  <p class="text-[11px] text-slate-500 mt-0.5">Dr. Kingsley Wong (Associate Professor) verified studio eligibility & academic merit.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative">
+                  <div class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full bg-[#8B1D2C] text-white flex items-center justify-center text-[10px] font-bold">
+                    ✓
+                  </div>
+                  <div class="flex flex-wrap items-baseline justify-between gap-1">
+                    <h4 class="text-xs font-bold text-slate-800">Step 3: Executive Committee & Dean's Audit</h4>
+                    <span class="text-[11px] text-slate-400 font-mono">20 Feb 2025</span>
+                  </div>
+                  <p class="text-[11px] text-slate-500 mt-0.5">School Board approved financial allocation under Scheme Tier 1 Award Grants.</p>
+                </div>
+
+                <!-- Step 4 (Pending) -->
+                <div class="relative">
+                  <div class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full bg-rose-500 text-white flex items-center justify-center text-[11px] font-bold animate-pulse">
+                    !
+                  </div>
+                  <div class="flex flex-wrap items-baseline justify-between gap-1">
+                    <h4 class="text-xs font-bold text-[#8B1D2C]">Step 4: Vault Disbursement Authorization Required</h4>
+                    <span class="text-[11px] font-bold text-[#8B1D2C]">Action Pending</span>
+                  </div>
+                  <p class="text-[11px] text-[#8B1D2C] mt-0.5">Please confirm your receiving bank details or FPS proxy ID in the Vault to release HK$ 4,800.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
+              <div class="flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onclick="navigateTo('screen-vault')"
+                  class="px-5 py-2 rounded-xl bg-[#8B1D2C] hover:bg-[#741523] text-white text-xs font-bold transition shadow-sm"
+                >
+                  AUTHORIZE IN VAULT
+                </button>
+                <button
+                  type="button"
+                  onclick="openEndorsementModal()"
+                  class="px-4 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold transition flex items-center gap-1.5"
+                >
+                  <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>ENDORSEMENT LETTER (PDF)</span>
+                </button>
+              </div>
+              <button
+                type="button"
+                onclick="showToast('Loading full application dossier SD-SUB-2025-0849...')"
+                class="text-xs font-semibold text-slate-500 hover:text-slate-800 flex items-center gap-1"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                <span>View Full Submission</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Submission Card 2: Red Dot Award (Pending Tutor Endorsement) -->
+          <div class="tracker-card pending bg-white rounded-2xl border-t-4 border-t-amber-400 border-x border-b border-slate-200/90 shadow-sm p-6 space-y-5">
+            <div class="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-mono font-semibold text-slate-500">Ref: SD-SUB-2025-0912</span>
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#FEF3C7] text-[#92400E]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                    Stage 2: Pending Tutor Endorsement
+                  </span>
+                </div>
+                <h3 class="text-xl font-extrabold text-slate-900 mt-1">Red Dot Award: Brands & Communication Design 2025</h3>
+                <p class="text-xs text-slate-500 mt-0.5">Category: Packaging Design • Entry Title: "Terracotta Re-brew Kinetic Vessel"</p>
+              </div>
+              <div class="text-right">
+                <span class="text-[10px] uppercase font-bold text-slate-400 block">REQUESTED SUBSIDY</span>
+                <span class="text-2xl font-black text-slate-900">$2,400</span>
+              </div>
+            </div>
+
+            <!-- Progress Card -->
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-3">
+              <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
+                <div class="flex items-center gap-2 font-semibold text-slate-700">
+                  <svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Assigned Tutor: Prof. Brian Lau (Communication Design)</span>
+                </div>
+                <span class="text-amber-800 font-bold bg-amber-100/70 px-2 py-0.5 rounded">SLA: 2 working days remaining</span>
+              </div>
+
+              <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                <div class="bg-amber-500 h-full w-2/5"></div>
+              </div>
+
+              <div class="flex flex-wrap items-center justify-between text-[11px] text-slate-500">
+                <span>Submitted: 18 Feb 2025</span>
+                <span class="font-bold text-amber-700">Tutor Review Active</span>
+                <span>Final Reimbursement: Pending</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Disbursed Archive Section -->
+        <div class="space-y-3 pt-3">
+          <div class="flex items-center justify-between">
+            <h2 class="text-sm font-bold uppercase tracking-wider text-slate-700">Disbursed Archive (1)</h2>
+            <span class="text-xs text-slate-400">Academic Year 2024/25</span>
+          </div>
+
+          <div class="tracker-card disbursed bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-start gap-3.5">
+              <div class="w-9 h-9 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">
+                ✓
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-mono text-slate-400">Ref: SD-SUB-2024-0419</span>
+                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800">
+                    Disbursed via FPS
+                  </span>
+                </div>
+                <h3 class="text-base font-bold text-slate-900 mt-0.5">D&AD New Blood Awards 2024</h3>
+                <p class="text-xs text-slate-500">Settled on 15 Nov 2024 • Rail: Hang Seng FPS Mobile (+852 9123 4567) • Ref: FPS-20241115-99214</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4 self-end md:self-auto">
+              <div class="text-right">
+                <span class="text-[10px] uppercase font-bold text-slate-400 block">DISBURSED SUM</span>
+                <span class="text-xl font-bold text-slate-900">$2,500</span>
+                <span class="text-[10px] text-emerald-700 font-semibold block">Direct Credit Successful</span>
+              </div>
+              <button
+                type="button"
+                onclick="openVoucherModal('SD-SUB-2024-0419', 'D&AD New Blood Awards 2024', '$2,500', '15 Nov 2024', 'FPS-20241115-99214')"
+                class="px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold transition flex items-center gap-1.5"
+              >
+                <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span>VOUCHER</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Need Help with Subsidy Audit Card -->
+        <div class="bg-slate-50 rounded-2xl border border-slate-200/90 p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 font-bold flex-shrink-0">
+              ?
+            </div>
+            <div>
+              <h3 class="text-sm font-bold text-slate-900">Need Help with Your Subsidy Audit?</h3>
+              <p class="text-xs text-slate-500 mt-0.5">
+                General Secretariat Office • Room V810, 8/F, Jockey Club Innovation Tower
+              </p>
+              <p class="text-xs text-slate-500">
+                Enquiries: <a href="mailto:sd.subsidy@polyu.edu.hk" class="text-[#8B1D2C] underline">sd.subsidy@polyu.edu.hk</a> | Hotline: +852 2766 5454
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onclick="showToast('Opening PolyU School of Design Scheme Handbook (PDF)...')"
+            class="px-4 py-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 text-xs font-bold transition flex items-center gap-1.5 flex-shrink-0 shadow-2xs"
+          >
+            <span>SUBSIDY GUIDELINES</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- SCREEN 4: 04_reimbursement_vault          -->
+      <!-- ========================================== -->
+      <section id="screen-vault" class="hidden space-y-6" aria-labelledby="vault-heading">
+        <!-- Vault Header & Top Stats -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-7">
+            <div class="flex items-center gap-2 text-xs text-slate-500 font-medium">
+              <span class="inline-flex items-center gap-1 text-slate-600 font-mono">
+                <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                NETID: 22084912D
+              </span>
+              <span>•</span>
+              <span class="uppercase">BA (Hons) Scheme in Design</span>
+            </div>
+            <h1 id="vault-heading" class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mt-0.5">Reimbursement Vault</h1>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">
+              Manage authorized university payout rails, student banking credentials, and track direct disbursement remittances processed via the Finance Office.
+            </p>
+          </div>
+
+          <!-- 2 Top Stats Cards -->
+          <div class="lg:col-span-5 grid grid-cols-2 gap-3">
+            <div class="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-sm">
+              <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 block">TOTAL DISBURSED YTD</span>
+              <span id="vault-ytd-amount" class="text-2xl font-black text-slate-900 mt-0.5 block">$2,500</span>
+              <span class="text-[11px] text-emerald-700 font-semibold flex items-center gap-1 mt-1">
+                ✓ 1 Settled Claim
+              </span>
+            </div>
+            <div class="bg-[#8B1D2C] rounded-2xl p-4 text-white shadow-md">
+              <span class="text-[10px] uppercase font-bold tracking-wider text-rose-200 block">SANCTIONED & READY</span>
+              <span id="vault-sanctioned-amount" class="text-2xl font-black text-white mt-0.5 block">$4,800</span>
+              <span id="vault-sanctioned-status" class="text-[11px] text-rose-200 font-medium flex items-center gap-1 mt-1">
+                ⏱ Awaiting Authorization
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Required: Subsidy Release Banner Card -->
+        <div id="vault-release-card" class="bg-white rounded-2xl border border-rose-200 shadow-md overflow-hidden">
+          <!-- Top alert bar -->
+          <div class="px-5 py-2.5 bg-rose-50 border-b border-rose-100 flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#8B1D2C] animate-ping"></span>
+              <span class="text-xs font-black uppercase tracking-wider text-[#8B1D2C]">ACTION REQUIRED: SUBSIDY RELEASE</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-mono text-slate-500">Ref: SD-SUB-2025-0849</span>
+              <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-[#8B1D2C] text-white">Ready for Payout</span>
+            </div>
+          </div>
+
+          <!-- Body details -->
+          <div class="p-6 space-y-5">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400">SANCTIONED COMPETITION PROGRAM</span>
+                <h3 class="text-2xl font-extrabold text-slate-900 mt-0.5">iF Student Design Award 2025</h3>
+                <p class="text-xs text-slate-600 mt-1 flex items-center gap-1.5">
+                  <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Dean of Design Endorsement Verified • Fast Payment System (FPS) Pipeline Prepared</span>
+                </p>
+              </div>
+              <div class="sm:text-right bg-rose-50/60 p-3.5 rounded-xl border border-rose-100 sm:border-0 sm:bg-transparent">
+                <span class="text-[10px] uppercase font-bold text-slate-400 block">APPROVED NET REIMBURSEMENT</span>
+                <span class="text-3xl font-black text-[#8B1D2C]">$4,800</span>
+              </div>
+            </div>
+
+            <!-- Select Destination Rail -->
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                Select Destination Rail for Direct University Remittance:
+              </label>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="payout-rails-group">
+                <!-- Rail 1: Hang Seng Bank (Selected) -->
+                <div
+                  onclick="selectPayoutRail(this, 'hang-seng')"
+                  class="payout-rail-card active p-4 rounded-xl border-2 border-[#8B1D2C] bg-rose-50/30 cursor-pointer transition space-y-2"
+                >
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                      <span class="rail-radio w-4 h-4 rounded-full border-4 border-[#8B1D2C] bg-white flex-shrink-0"></span>
+                      <span class="text-sm font-bold text-slate-900">Hang Seng Bank (024)</span>
+                    </div>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-[#FEE2E2] text-[#991B1B]">Default Rail</span>
+                  </div>
+                  <div class="text-xs text-slate-600 pl-6 space-y-0.5">
+                    <p class="font-mono font-semibold text-slate-800">FPS Mobile Identifier: +852 9123 4567</p>
+                    <p class="text-[11px] text-slate-500 flex items-center gap-1">
+                      <span>⚡ Instant Clearing • Hong Kong Interbank Clearing Limited</span>
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Rail 2: Bank of China (HK) -->
+                <div
+                  onclick="selectPayoutRail(this, 'boc')"
+                  class="payout-rail-card p-4 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 cursor-pointer transition space-y-2"
+                >
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                      <span class="rail-radio w-4 h-4 rounded-full border border-slate-300 flex-shrink-0"></span>
+                      <span class="text-sm font-bold text-slate-900">Bank of China (HK) (012)</span>
+                    </div>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-600">Backup Rail</span>
+                  </div>
+                  <div class="text-xs text-slate-600 pl-6 space-y-0.5">
+                    <p class="font-mono font-semibold text-slate-800">Account: 012-882-1-042819-2</p>
+                    <p class="text-[11px] text-slate-500 flex items-center gap-1">
+                      <span>🏛 Direct Credit • 1-2 University Working Days</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Legal Disclaimers & Security Stamp -->
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 flex items-start gap-3 text-xs text-slate-600 leading-relaxed">
+              <svg class="w-5 h-5 text-[#8B1D2C] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              <span>
+                By releasing this payout, you confirm student status active with PolyU School of Design for the academic year 2024/25. Transaction authorization will generate a cryptographically stamped university reimbursement voucher sent to your NetID mailbox.
+              </span>
+            </div>
+
+            <!-- Action Trigger Row -->
+            <div class="flex flex-wrap items-center justify-between gap-4 pt-1">
+              <div class="flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  id="btn-release-payout"
+                  onclick="authorizeAndReleasePayout()"
+                  class="px-6 py-3 rounded-xl bg-[#8B1D2C] hover:bg-[#741523] active:bg-[#5D101C] text-white font-bold text-sm shadow-md transition flex items-center gap-2 cursor-pointer"
+                >
+                  <span>AUTHORIZE & RELEASE HK$ 4,800</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </button>
+
+                <button
+                  type="button"
+                  onclick="openVoucherModal('SD-SUB-2025-0849', 'iF Student Design Award 2025', '$4,800', '02 Mar 2025', 'FPS-20250302-88192')"
+                  class="px-4 py-3 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs transition flex items-center gap-1.5"
+                >
+                  <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                  <span>VIEW VOUCHERS</span>
+                </button>
+              </div>
+
+              <div class="text-xs text-slate-400 font-mono">
+                Dean Certificate Stamp #841029
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2-Column: Registered Rails & Security Standards -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- Left Column: Registered University Payout Rails -->
+          <div class="lg:col-span-7 space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-[#8B1D2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                <h2 class="text-sm font-bold uppercase tracking-wide text-slate-900">Registered University Payout Rails</h2>
+              </div>
+              <button
+                type="button"
+                onclick="showToast('Redirecting to PolyU Finance Office Banking Credentials portal...')"
+                class="text-xs font-bold text-[#8B1D2C] hover:underline flex items-center gap-1"
+              >
+                <span>✎ UPDATE RAILS</span>
+              </button>
+            </div>
+
+            <!-- Rail Card 1 -->
+            <div class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-3">
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-start gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 flex-shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="text-sm font-bold text-slate-900">FPS Mobile Proxy Rail</h3>
+                      <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-600">Primary</span>
+                    </div>
+                    <p class="text-base font-bold font-mono text-slate-800 mt-0.5">+852 9123 4567</p>
+                    <p class="text-xs text-slate-500">Hang Seng Bank Ltd. (024) • Verified with NetID 22084912D</p>
+                  </div>
+                </div>
+
+                <div class="text-right">
+                  <span class="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                    ✓ Active & Verified
+                  </span>
+                  <span class="text-[10px] text-slate-400 block mt-1">Instant Settled</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Rail Card 2 -->
+            <div class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-3">
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-start gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 flex-shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h3 class="text-sm font-bold text-slate-900">HSBC Direct Credit Account</h3>
+                      <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-600">Backup</span>
+                    </div>
+                    <p class="text-base font-bold font-mono text-slate-800 mt-0.5">848-••••••-838</p>
+                    <p class="text-xs text-slate-500">Hongkong & Shanghai Banking Corp (004) • Tsang Rachel</p>
+                  </div>
+                </div>
+
+                <div class="text-right">
+                  <span class="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-full">
+                    ✓ Verified 12 Oct 2024
+                  </span>
+                  <span class="text-[10px] text-slate-400 block mt-1">Autopay Channel</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Security Standard -->
+          <div class="lg:col-span-5 space-y-4">
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-[#8B1D2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              <h2 class="text-sm font-bold uppercase tracking-wide text-slate-900">Security Standard</h2>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-4">
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-lg bg-rose-50 text-[#8B1D2C] flex items-center justify-center flex-shrink-0">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xs font-bold text-slate-900">PolyU FO-CERT Compliant</h3>
+                  <p class="text-xs text-slate-500 leading-relaxed mt-0.5">
+                    Disbursements comply with HKMA and PolyU Finance Office Circular No. 2024/09.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Verification status box -->
+              <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-[10px] uppercase font-bold text-slate-400">IDENTITY VERIFICATION</span>
+                  <span class="text-xs font-bold text-[#8B1D2C]">100% VALIDATED</span>
+                </div>
+                <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                  <div class="bg-[#8B1D2C] h-full w-full"></div>
+                </div>
+                <p class="text-[11px] text-slate-500 flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                  <span>Matched against Student NetID Registry</span>
+                </p>
+              </div>
+
+              <p class="text-[11px] text-slate-400 leading-relaxed">
+                Direct inquiries regarding subsidy voucher reconciliation to the Competition Liaison Desk: Room V810, 8/F, Jockey Club Innovation Tower.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom: Remittance & Disbursement History -->
+        <div class="space-y-4 pt-2">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <h2 class="text-base font-bold text-slate-900">REMITTANCE & DISBURSEMENT HISTORY</h2>
+              <p class="text-xs text-slate-500">Archived record of all completed bank payments and generated settlement receipts.</p>
+            </div>
+
+            <!-- Filter pills -->
+            <div class="flex items-center gap-2" id="vault-history-filter">
+              <button type="button" onclick="filterVaultHistory(this, 'all')" class="vhist-btn active px-3.5 py-1 rounded-full bg-slate-800 text-white text-xs font-bold">All Records (2)</button>
+              <button type="button" onclick="filterVaultHistory(this, 'disbursed')" class="vhist-btn px-3.5 py-1 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 text-xs font-semibold">Disbursed (1)</button>
+              <button type="button" onclick="filterVaultHistory(this, 'queued')" class="vhist-btn px-3.5 py-1 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 text-xs font-semibold">Queued (1)</button>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <!-- Record 1: D&AD New Blood -->
+            <div class="vhist-item disbursed bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div class="flex items-start gap-3.5">
+                <div class="w-9 h-9 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">
+                  ✓
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 class="text-base font-bold text-slate-900">D&AD New Blood Awards 2024</h3>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono text-slate-500 bg-slate-100">SD-SUB-2024-0419</span>
+                    <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800">Settled & Paid</span>
+                  </div>
+                  <p class="text-xs text-slate-500 mt-1">
+                    Settlement: 15 Nov 2024 • Rail: Hang Seng FPS Mobile (+852 9123 4567) • Ref: FPS-20241115-99214
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3 self-end sm:self-auto">
+                <div class="text-right">
+                  <span class="text-lg font-bold text-slate-900 block">$2,500</span>
+                  <span class="text-[10px] text-emerald-700 font-semibold">Direct Credit Successful</span>
+                </div>
+                <button
+                  type="button"
+                  onclick="openVoucherModal('SD-SUB-2024-0419', 'D&AD New Blood Awards 2024', '$2,500', '15 Nov 2024', 'FPS-20241115-99214')"
+                  class="px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold transition flex items-center gap-1.5"
+                >
+                  <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>VOUCHER</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Record 2: iF Student Design Award 2025 -->
+            <div id="vhist-if-card" class="vhist-item queued bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div class="flex items-start gap-3.5">
+                <div id="vhist-if-icon" class="w-9 h-9 rounded-full bg-rose-100 text-[#8B1D2C] flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">
+                  🏛
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 class="text-base font-bold text-slate-900">iF Student Design Award 2025</h3>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono text-slate-500 bg-slate-100">SD-SUB-2025-0849</span>
+                    <span id="vhist-if-badge" class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-[#FEE2E2] text-[#991B1B]">Ready for Payout</span>
+                  </div>
+                  <p id="vhist-if-sub" class="text-xs text-slate-500 mt-1">
+                    Authorized Date: 02 Mar 2025 • Awaiting Student Release Verification
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3 self-end sm:self-auto">
+                <div class="text-right">
+                  <span class="text-lg font-bold text-slate-900 block">$4,800</span>
+                  <span id="vhist-if-status" class="text-[10px] text-rose-700 font-semibold">Pending Confirmation</span>
+                </div>
+                <button
+                  type="button"
+                  id="vhist-if-action-btn"
+                  onclick="authorizeAndReleasePayout()"
+                  class="px-4 py-1.5 rounded-lg bg-[#8B1D2C] hover:bg-[#741523] text-white text-xs font-bold transition flex items-center gap-1 shadow-2xs"
+                >
+                  <span>RELEASE</span>
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+
+    <!-- ========================================== -->
+    <!-- PERSISTENT BOTTOM NAVIGATION BAR (SPA NAV) -->
+    <!-- ========================================== -->
+    <nav class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200/90 shadow-[0_-2px_10px_rgba(0,0,0,0.04)]" aria-label="Main Navigation">
+      <div class="max-w-md mx-auto px-6 h-16 flex items-center justify-between">
+        <!-- Tab 1: HOME -->
+        <button
+          type="button"
+          id="nav-tab-home"
+          onclick="navigateTo('screen-dashboard')"
+          class="nav-tab active flex flex-col items-center justify-center flex-1 py-1 text-[#8B1D2C] group focus:outline-none"
+        >
+          <!-- Campus Building / Hall Icon -->
+          <svg class="w-6 h-6 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="7" y="4" width="10" height="16" rx="2" />
+            <path d="M7 9H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2" />
+            <path d="M17 9h2a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-2" />
+            <path d="M10 20v-3a2 2 0 0 1 4 0v3" />
+            <path d="M10 9h4" />
+          </svg>
+          <span class="text-[10px] font-bold tracking-wider uppercase mt-1">HOME</span>
+        </button>
+
+        <!-- Tab 2: APPLY -->
+        <button
+          type="button"
+          id="nav-tab-apply"
+          onclick="navigateTo('screen-form')"
+          class="nav-tab flex flex-col items-center justify-center flex-1 py-1 text-slate-500 hover:text-slate-900 group focus:outline-none"
+        >
+          <!-- Plus Icon -->
+          <svg class="w-6 h-6 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14m-7-7h14" />
+          </svg>
+          <span class="text-[10px] font-bold tracking-wider uppercase mt-1">APPLY</span>
+        </button>
+
+        <!-- Tab 3: TRACKER -->
+        <button
+          type="button"
+          id="nav-tab-tracker"
+          onclick="navigateTo('screen-tracker')"
+          class="nav-tab flex flex-col items-center justify-center flex-1 py-1 text-slate-500 hover:text-slate-900 group focus:outline-none"
+        >
+          <!-- Clock Icon -->
+          <svg class="w-6 h-6 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9" />
+            <polyline points="12 7 12 12 15.5 14" />
+          </svg>
+          <span class="text-[10px] font-bold tracking-wider uppercase mt-1">TRACKER</span>
+        </button>
+
+        <!-- Tab 4: VAULT -->
+        <button
+          type="button"
+          id="nav-tab-vault"
+          onclick="navigateTo('screen-vault')"
+          class="nav-tab flex flex-col items-center justify-center flex-1 py-1 text-slate-500 hover:text-slate-900 group focus:outline-none"
+        >
+          <!-- Payment Card / Wallet Card Icon -->
+          <svg class="w-6 h-6 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2.5" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          <span class="text-[10px] font-bold tracking-wider uppercase mt-1">VAULT</span>
+        </button>
+      </div>
+    </nav>
+
+
+    <!-- ========================================== -->
+    <!-- INTERACTIVE MODALS & TOAST FEEDBACK        -->
+    <!-- ========================================== -->
+
+    <!-- Modal 1: University Settlement Voucher Modal -->
+    <div id="modal-voucher" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs" role="dialog" aria-modal="true" aria-labelledby="voucher-modal-title">
+      <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative animate-in fade-in zoom-in-95 duration-150">
+        <button type="button" onclick="closeVoucherModal()" class="absolute top-5 right-5 p-1.5 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition" aria-label="Close dialog">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+          <div class="w-10 h-10 rounded-xl bg-[#8B1D2C] text-white flex items-center justify-center font-bold">
+            FO
+          </div>
+          <div>
+            <h2 id="voucher-modal-title" class="text-base font-extrabold text-slate-900 uppercase tracking-tight">PolyU Finance Office Remittance Voucher</h2>
+            <p class="text-xs text-slate-500">School of Design Subsidy Scheme Settlement</p>
+          </div>
+        </div>
+
+        <div class="mt-5 space-y-4 text-xs">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/90 space-y-2">
+            <div class="flex justify-between">
+              <span class="text-slate-400 uppercase font-semibold">Program</span>
+              <span id="vouch-prog" class="font-bold text-slate-900 text-right">iF Student Design Award 2025</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-400 uppercase font-semibold">Application Ref</span>
+              <span id="vouch-ref" class="font-mono font-semibold text-slate-800">SD-SUB-2025-0849</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-400 uppercase font-semibold">Beneficiary</span>
+              <span class="font-semibold text-slate-800">Rachel Tsang (NetID: 22084912D)</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-400 uppercase font-semibold">Settlement Amount</span>
+              <span id="vouch-amt" class="text-base font-extrabold text-[#8B1D2C]">$4,800 HKD</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-400 uppercase font-semibold">Remittance Channel</span>
+              <span class="font-semibold text-slate-800">Hang Seng Bank (024) • FPS Mobile</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-400 uppercase font-semibold">Clearing Reference</span>
+              <span id="vouch-fps" class="font-mono text-emerald-800 font-bold">FPS-20250302-88192</span>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center gap-2 text-emerald-800 font-semibold">
+            <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>HKMA Automated Clearing House Verified & Stamped</span>
+          </div>
+        </div>
+
+        <div class="mt-6 flex justify-end gap-3">
+          <button type="button" onclick="showToast('Printing official voucher PDF...')" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-50 transition">
+            Print / Save PDF
+          </button>
+          <button type="button" onclick="closeVoucherModal()" class="px-5 py-2 rounded-xl bg-[#8B1D2C] text-white text-xs font-bold hover:bg-[#741523] transition">
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 2: Upload Award Certificate Modal -->
+    <div id="modal-upload-award" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs" role="dialog" aria-modal="true" aria-labelledby="award-modal-title">
+      <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative animate-in fade-in zoom-in-95 duration-150">
+        <button type="button" onclick="closeUploadAwardModal()" class="absolute top-5 right-5 p-1.5 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition" aria-label="Close dialog">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+          <div class="w-10 h-10 rounded-xl bg-[#C0833C] text-white flex items-center justify-center">
+            🏆
+          </div>
+          <div>
+            <h2 id="award-modal-title" class="text-base font-extrabold text-slate-900">Upload Award Certificate</h2>
+            <p class="text-xs text-slate-500">School of Design Honorarium Grant Scheme</p>
+          </div>
+        </div>
+
+        <div class="mt-5 space-y-4 text-xs">
+          <div>
+            <label class="block font-bold uppercase text-slate-700 mb-1">Award Accolade / Tier</label>
+            <select class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-800">
+              <option>Red Dot: Best of the Best (Honorarium: HK$ 10,000)</option>
+              <option>iF Student Design Award Winner (Honorarium: HK$ 8,000)</option>
+              <option>D&AD Yellow Pencil (Honorarium: HK$ 12,000)</option>
+              <option>Core77 Design Award Notable (Honorarium: HK$ 5,000)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block font-bold uppercase text-slate-700 mb-1">Upload Certificate or Official Jury Proof (PDF / PNG)</label>
+            <div class="border-2 border-dashed border-slate-300 rounded-2xl p-6 text-center hover:border-[#8B1D2C] transition cursor-pointer bg-slate-50/50">
+              <svg class="w-8 h-8 text-slate-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+              </svg>
+              <p class="font-bold text-slate-700 mt-2">Click to select certificate file</p>
+              <p class="text-[11px] text-slate-400 mt-0.5">Maximum file size: 15MB</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 flex justify-end gap-3">
+          <button type="button" onclick="closeUploadAwardModal()" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-50 transition">
+            Cancel
+          </button>
+          <button type="button" onclick="handleAwardCertificateUpload()" class="px-5 py-2 rounded-xl bg-[#C0833C] text-white text-xs font-bold hover:bg-[#A86F2E] transition">
+            Submit for Honorarium Audit
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 3: Dean's Endorsement Letter Preview -->
+    <div id="modal-endorsement" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs" role="dialog" aria-modal="true" aria-labelledby="endorse-modal-title">
+      <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative animate-in fade-in zoom-in-95 duration-150">
+        <button type="button" onclick="closeEndorsementModal()" class="absolute top-5 right-5 p-1.5 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition" aria-label="Close dialog">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+          <div class="w-10 h-10 rounded-xl bg-[#8B1D2C] text-white flex items-center justify-center font-bold">
+            SD
+          </div>
+          <div>
+            <h2 id="endorse-modal-title" class="text-base font-extrabold text-slate-900">Faculty Academic Endorsement</h2>
+            <p class="text-xs text-slate-500">PolyU School of Design Executive Board</p>
+          </div>
+        </div>
+
+        <div class="mt-4 space-y-3 text-xs text-slate-600 leading-relaxed font-serif bg-slate-50/70 p-4 rounded-xl border border-slate-200/90">
+          <p class="font-sans font-bold text-slate-900 text-sm">MEMORANDUM OF ENDORSEMENT</p>
+          <p><strong>To:</strong> PolyU Finance Office & Scholarship Committee</p>
+          <p><strong>Applicant:</strong> Rachel Tsang (NetID: 22084912D, BA Media Design)</p>
+          <p><strong>Competition:</strong> iF Student Design Award 2025</p>
+          <p class="italic">
+            "This project exhibits exemplary design rigor and innovative application of multimodal human-computer interfaces. The academic jury endorses full Tier 1 allocation of HK$ 4,800 under the Student Subsidy Scheme."
+          </p>
+          <div class="pt-2 font-sans text-[11px] text-slate-500 border-t border-slate-200 flex justify-between items-center">
+            <span>Signed: Dr. Kingsley Wong</span>
+            <span class="font-mono text-[#8B1D2C] font-bold">PolyU-ED-8841-V</span>
+          </div>
+        </div>
+
+        <div class="mt-6 flex justify-end gap-3">
+          <button type="button" onclick="closeEndorsementModal()" class="px-5 py-2 rounded-xl bg-[#8B1D2C] text-white text-xs font-bold hover:bg-[#741523] transition">
+            Close Document
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification Banner -->
+    <div
+      id="toast-notification"
+      class="fixed top-20 right-4 sm:right-8 z-50 transform translate-y-[-150%] opacity-0 transition-all duration-300 pointer-events-none max-w-sm"
+      role="status"
+      aria-live="polite"
+    >
+      <div class="bg-slate-900 text-white rounded-2xl px-5 py-3.5 shadow-2xl border border-slate-700 flex items-center gap-3">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 flex-shrink-0 animate-ping"></span>
+        <span id="toast-message" class="text-xs font-semibold leading-snug">Notification</span>
+      </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT: SPA NAVIGATION & INTERACTIONS  -->
+    <!-- ========================================== -->
+    <script>
+      // Single Page Application Navigation Logic
+      const screens = ['screen-dashboard', 'screen-form', 'screen-tracker', 'screen-vault'];
+      const tabs = {
+        'screen-dashboard': 'nav-tab-home',
+        'screen-form': 'nav-tab-apply',
+        'screen-tracker': 'nav-tab-tracker',
+        'screen-vault': 'nav-tab-vault',
+      };
+      const screenTitles = {
+        'screen-dashboard': 'SUBSIDY PORTAL',
+        'screen-form': 'APPLICATION',
+        'screen-tracker': 'TRACKER',
+        'screen-vault': 'VAULT',
+      };
+
+      function navigateTo(targetScreenId) {
+        // Hide all screens
+        screens.forEach((screenId) => {
+          const el = document.getElementById(screenId);
+          if (el) {
+            el.classList.add('hidden');
+          }
+        });
+
+        // Show target screen
+        const targetEl = document.getElementById(targetScreenId);
+        if (targetEl) {
+          targetEl.classList.remove('hidden');
+        }
+
+        // Update heading subtitle based on active screen
+        const headerTitleEl = document.getElementById('header-screen-title');
+        if (headerTitleEl && screenTitles[targetScreenId]) {
+          headerTitleEl.textContent = screenTitles[targetScreenId];
+        }
+
+        // Close profile menu if open
+        closeProfileMenu();
+
+        // Update bottom navigation bar tab highlights
+        Object.values(tabs).forEach((tabId) => {
+          const tabBtn = document.getElementById(tabId);
+          if (tabBtn) {
+            tabBtn.classList.remove('text-[#8B1D2C]', 'active');
+            tabBtn.classList.add('text-slate-500');
+          }
+        });
+
+        const activeTabId = tabs[targetScreenId];
+        if (activeTabId) {
+          const activeTabBtn = document.getElementById(activeTabId);
+          if (activeTabBtn) {
+            activeTabBtn.classList.add('text-[#8B1D2C]', 'active');
+            activeTabBtn.classList.remove('text-slate-500');
+          }
+        }
+
+        // Scroll smoothly to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Profile Menu (Screen 5) Toggle
+      function toggleProfileMenu() {
+        const menu = document.getElementById('screen-profile-menu');
+        const trigger = document.getElementById('profile-menu-trigger');
+        if (!menu) return;
+
+        const isHidden = menu.classList.contains('hidden');
+        if (isHidden) {
+          menu.classList.remove('hidden');
+          trigger.setAttribute('aria-expanded', 'true');
+        } else {
+          menu.classList.add('hidden');
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+      }
+
+      function closeProfileMenu() {
+        const menu = document.getElementById('screen-profile-menu');
+        const trigger = document.getElementById('profile-menu-trigger');
+        if (menu && !menu.classList.contains('hidden')) {
+          menu.classList.add('hidden');
+          if (trigger) trigger.setAttribute('aria-expanded', 'false');
+        }
+      }
+
+      // Global click listener to close profile menu on outside click
+      document.addEventListener('click', function (event) {
+        const menu = document.getElementById('screen-profile-menu');
+        const trigger = document.getElementById('profile-menu-trigger');
+        if (!menu || !trigger) return;
+        if (!menu.contains(event.target) && !trigger.contains(event.target)) {
+          closeProfileMenu();
+        }
+      });
+
+      // Toast Notification Function
+      let toastTimer = null;
+      function showToast(message) {
+        const toast = document.getElementById('toast-notification');
+        const msgEl = document.getElementById('toast-message');
+        if (!toast || !msgEl) return;
+
+        msgEl.textContent = message;
+        toast.classList.remove('translate-y-[-150%]', 'opacity-0', 'pointer-events-none');
+        toast.classList.add('translate-y-0', 'opacity-100');
+
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.add('translate-y-[-150%]', 'opacity-0', 'pointer-events-none');
+          toast.classList.remove('translate-y-0', 'opacity-100');
+        }, 3600);
+      }
+
+      // Screen 2 Form Controls
+      function setPrefix(val) {
+        const mr = document.getElementById('prefix-mr');
+        const ms = document.getElementById('prefix-ms');
+        if (val === 'Mr') {
+          mr.className = 'px-2.5 py-1.5 rounded-md text-xs font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30';
+          ms.className = 'px-2.5 py-1.5 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition';
+        } else {
+          ms.className = 'px-2.5 py-1.5 rounded-md text-xs font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30';
+          mr.className = 'px-2.5 py-1.5 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition';
+        }
+      }
+
+      function setStudyYear(btn, year) {
+        document.querySelectorAll('#study-year-group .year-btn').forEach((b) => {
+          b.className = 'year-btn py-2 px-3 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50';
+        });
+        btn.className = 'year-btn active py-2 px-3 rounded-lg border-2 border-[#8B1D2C] bg-rose-50/50 text-xs font-bold text-[#8B1D2C]';
+      }
+
+      function setDiscipline(btn) {
+        document.querySelectorAll('#discipline-grid .disc-btn').forEach((b) => {
+          b.className = 'disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2';
+          const radio = b.querySelector('.disc-radio');
+          if (radio) {
+            radio.className = 'w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio';
+          }
+        });
+        btn.className = 'disc-btn active p-2.5 rounded-lg border-2 border-[#8B1D2C] bg-rose-50/40 text-left text-xs font-bold text-[#8B1D2C] flex items-center gap-2';
+        const activeRadio = btn.querySelector('.disc-radio');
+        if (activeRadio) {
+          activeRadio.className = 'w-3.5 h-3.5 rounded-full border-4 border-[#8B1D2C] bg-white flex-shrink-0 disc-radio';
+        }
+      }
+
+      function setRecognition(btn, level) {
+        document.querySelectorAll('#recognition-level-group .rec-btn').forEach((b) => {
+          b.className = 'rec-btn py-2 px-3 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50';
+        });
+        btn.className = 'rec-btn active py-2 px-3 rounded-lg border-2 border-[#8B1D2C] bg-rose-50/50 text-xs font-bold text-[#8B1D2C]';
+      }
+
+      function setGroupProject(isYes) {
+        const noBtn = document.getElementById('grp-no');
+        const yesBtn = document.getElementById('grp-yes');
+        const field = document.getElementById('group-members-field');
+        if (isYes) {
+          yesBtn.className = 'px-3 py-1 rounded-md text-xs font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30';
+          noBtn.className = 'px-3 py-1 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition';
+          field.classList.remove('hidden');
+        } else {
+          noBtn.className = 'px-3 py-1 rounded-md text-xs font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30';
+          yesBtn.className = 'px-3 py-1 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition';
+          field.classList.add('hidden');
+        }
+      }
+
+      function setCoursework(isYes) {
+        const noBtn = document.getElementById('cw-no');
+        const yesBtn = document.getElementById('cw-yes');
+        if (isYes) {
+          yesBtn.className = 'px-3 py-1 rounded-md text-xs font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30';
+          noBtn.className = 'px-3 py-1 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition';
+        } else {
+          noBtn.className = 'px-3 py-1 rounded-md text-xs font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30';
+          yesBtn.className = 'px-3 py-1 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition';
+        }
+      }
+
+      function toggleSubsidyItem(item) {
+        if (item === 'shipping') {
+          const chk = document.getElementById('check-shipping');
+          const amt = document.getElementById('claim-shipping-amount');
+          if (chk.checked) {
+            amt.disabled = false;
+            amt.value = '600.00';
+            amt.className = 'w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-mono font-bold text-slate-800 bg-white';
+          } else {
+            amt.disabled = true;
+            amt.value = '0.00';
+            amt.className = 'w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-mono font-bold text-slate-400 bg-slate-100 cursor-not-allowed';
+          }
+        }
+      }
+
+      function saveDraft() {
+        const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        const statusEl = document.getElementById('form-autosave-status');
+        if (statusEl) statusEl.textContent = `Draft manually saved at ${timestamp}`;
+        showToast('Application draft saved successfully to PolyU Portal cache.');
+      }
+
+      function handleFormSubmit(e) {
+        e.preventDefault();
+        const decl1 = document.getElementById('decl-1');
+        const decl2 = document.getElementById('decl-2');
+
+        if (!decl1.checked || !decl2.checked) {
+          showToast('Validation Error: Please accept both mandatory declarations.');
+          return;
+        }
+
+        const compTitle = document.getElementById('competition-title').value;
+        showToast(`Application for "${compTitle}" submitted! Assigned Endorser Dr. K. Wong notified.`);
+        
+        // Navigate directly to Screen 3 (Tracker)
+        setTimeout(() => {
+          navigateTo('screen-tracker');
+        }, 600);
+      }
+
+      // Screen 4 Payout Rail Selection
+      function selectPayoutRail(card, rail) {
+        document.querySelectorAll('#payout-rails-group .payout-rail-card').forEach((c) => {
+          c.className = 'payout-rail-card p-4 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 cursor-pointer transition space-y-2';
+          const rad = c.querySelector('.rail-radio');
+          if (rad) rad.className = 'rail-radio w-4 h-4 rounded-full border border-slate-300 flex-shrink-0';
+        });
+
+        card.className = 'payout-rail-card active p-4 rounded-xl border-2 border-[#8B1D2C] bg-rose-50/30 cursor-pointer transition space-y-2';
+        const radio = card.querySelector('.rail-radio');
+        if (radio) {
+          radio.className = 'rail-radio w-4 h-4 rounded-full border-4 border-[#8B1D2C] bg-white flex-shrink-0';
+        }
+      }
+
+      // Vault Payout Authorization
+      function authorizeAndReleasePayout() {
+        const releaseCard = document.getElementById('vault-release-card');
+        const ytdAmount = document.getElementById('vault-ytd-amount');
+        const sanctionedAmount = document.getElementById('vault-sanctioned-amount');
+        const sanctionedStatus = document.getElementById('vault-sanctioned-status');
+
+        // History item update
+        const ifBadge = document.getElementById('vhist-if-badge');
+        const ifStatus = document.getElementById('vhist-if-status');
+        const ifSub = document.getElementById('vhist-if-sub');
+        const ifBtn = document.getElementById('vhist-if-action-btn');
+        const ifIcon = document.getElementById('vhist-if-icon');
+
+        // Update amounts
+        if (ytdAmount) ytdAmount.textContent = '$7,300';
+        if (sanctionedAmount) sanctionedAmount.textContent = '$0';
+        if (sanctionedStatus) sanctionedStatus.textContent = '✓ All Approved Funds Disbursed';
+
+        // Update history row
+        if (ifBadge) {
+          ifBadge.className = 'px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800';
+          ifBadge.textContent = 'Settled & Paid';
+        }
+        if (ifStatus) {
+          ifStatus.className = 'text-[10px] text-emerald-700 font-semibold';
+          ifStatus.textContent = 'Direct Credit Successful';
+        }
+        if (ifSub) {
+          ifSub.textContent = 'Settlement: Today • Rail: Hang Seng FPS Mobile (+852 9123 4567) • Ref: FPS-20250302-88192';
+        }
+        if (ifBtn) {
+          ifBtn.className = 'px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold transition flex items-center gap-1.5';
+          ifBtn.innerHTML = `
+            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span>VOUCHER</span>
+          `;
+          ifBtn.onclick = function() {
+            openVoucherModal('SD-SUB-2025-0849', 'iF Student Design Award 2025', '$4,800', 'Today', 'FPS-20250302-88192');
+          };
+        }
+        if (ifIcon) {
+          ifIcon.className = 'w-9 h-9 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5';
+          ifIcon.textContent = '✓';
+        }
+
+        // Show settlement confirmation in release banner
+        if (releaseCard) {
+          releaseCard.innerHTML = `
+            <div class="p-6 bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div class="flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xl shadow-sm">
+                  ✓
+                </div>
+                <div>
+                  <span class="text-[10px] uppercase font-bold text-emerald-800 tracking-wider">DISBURSEMENT SUCCESSFUL</span>
+                  <h3 class="text-xl font-extrabold text-slate-900 mt-0.5">HK$ 4,800 Released to Hang Seng FPS</h3>
+                  <p class="text-xs text-slate-600 mt-0.5">Voucher #VR-2025-0849-FPS stamped and transmitted to NetID inbox.</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onclick="openVoucherModal('SD-SUB-2025-0849', 'iF Student Design Award 2025', '$4,800', 'Today', 'FPS-20250302-88192')"
+                class="px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition shadow-sm flex items-center gap-1.5 flex-shrink-0"
+              >
+                <span>VIEW SETTLED VOUCHER</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </button>
+            </div>
+          `;
+        }
+
+        showToast('Payment Authorized: HK$ 4,800 instant transfer dispatched via HKMA FPS.');
+      }
+
+      // Filter Tabs for Tracker (Screen 3)
+      function filterTracker(btn, filterType) {
+        document.querySelectorAll('#tracker-filter-group .tracker-filter').forEach((b) => {
+          b.className = 'tracker-filter px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 text-xs font-semibold';
+        });
+        btn.className = 'tracker-filter active px-4 py-1.5 rounded-full bg-[#8B1D2C] text-white text-xs font-bold shadow-2xs';
+
+        const cards = document.querySelectorAll('.tracker-card');
+        cards.forEach((card) => {
+          if (filterType === 'all') {
+            card.style.display = '';
+          } else if (card.classList.contains(filterType)) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+
+      // Filter Tabs for Vault History (Screen 4)
+      function filterVaultHistory(btn, filterType) {
+        document.querySelectorAll('#vault-history-filter .vhist-btn').forEach((b) => {
+          b.className = 'vhist-btn px-3.5 py-1 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 text-xs font-semibold';
+        });
+        btn.className = 'vhist-btn active px-3.5 py-1 rounded-full bg-slate-800 text-white text-xs font-bold';
+
+        const items = document.querySelectorAll('.vhist-item');
+        items.forEach((item) => {
+          if (filterType === 'all') {
+            item.style.display = '';
+          } else if (item.classList.contains(filterType)) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      }
+
+      // Voucher Modal Handlers
+      function openVoucherModal(ref, prog, amt, date, fps) {
+        const modal = document.getElementById('modal-voucher');
+        document.getElementById('vouch-ref').textContent = ref;
+        document.getElementById('vouch-prog').textContent = prog;
+        document.getElementById('vouch-amt').textContent = amt + ' HKD';
+        document.getElementById('vouch-fps').textContent = fps;
+        modal.classList.remove('hidden');
+      }
+      function closeVoucherModal() {
+        document.getElementById('modal-voucher').classList.add('hidden');
+      }
+
+      // Upload Award Modal Handlers
+      function openUploadAwardModal() {
+        document.getElementById('modal-upload-award').classList.remove('hidden');
+      }
+      function closeUploadAwardModal() {
+        document.getElementById('modal-upload-award').classList.add('hidden');
+      }
+      function handleAwardCertificateUpload() {
+        closeUploadAwardModal();
+        showToast('Official award certificate uploaded. Sent to Faculty Dean for Honorarium audit.');
+      }
+
+      // Endorsement Modal Handlers
+      function openEndorsementModal() {
+        document.getElementById('modal-endorsement').classList.remove('hidden');
+      }
+      function closeEndorsementModal() {
+        document.getElementById('modal-endorsement').classList.add('hidden');
+      }
+    </script>
+  </body>
+</html>

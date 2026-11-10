@@ -1,0 +1,6 @@
+{
+  "name": "PolyU Design Subsidy Scheme Portal",
+  "description": "School of Design Financial Assistance for Enrolled Students & Recent Graduates - interactive application, tracker, and reimbursement vault prototype.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
