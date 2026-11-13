@@ -628,11 +628,11 @@
       <!-- ========================================== -->
       <section id="screen-form" class="hidden space-y-6" aria-labelledby="form-heading">
         <!-- Sub-navigation action bar -->
-        <div class="flex flex-wrap items-center justify-between gap-3 text-xs pb-1 border-b border-slate-200/60">
+        <div class="flex flex-wrap items-center justify-between gap-3 text-[15px] pb-1 border-b border-slate-200/60">
           <button
             type="button"
             onclick="navigateTo('screen-dashboard')"
-            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-bold tracking-wide transition shadow-2xs"
+            class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-[15px] font-bold tracking-wide transition shadow-2xs"
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -640,13 +640,13 @@
             <span>BACK TO DASHBOARD</span>
           </button>
 
-          <div class="flex items-center gap-2 text-slate-500 font-medium">
+          <div class="flex items-center gap-2 text-slate-500 text-[15px] font-medium">
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
             <span id="form-autosave-status">Draft auto-saved 14s ago</span>
           </div>
 
-          <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 text-[#8B1D2C] border border-[#FEE2E2] font-semibold">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-rose-50 text-[#8B1D2C] border border-[#FEE2E2] text-[15px] font-semibold">
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <span>REVIEW SLA: 3–5 WORKING DAYS</span>
@@ -657,21 +657,21 @@
         <div class="bg-[#8B1D2C] rounded-2xl p-6 text-white shadow-md relative overflow-hidden">
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
             <div>
-              <div class="flex items-center gap-2 text-xs font-semibold text-rose-200 tracking-wider">
+              <div class="flex items-center gap-2 text-[15px] font-semibold text-rose-200 tracking-wider">
                 <span>AY 2025/26</span>
                 <span>•</span>
                 <span>FORM SD-AF-25</span>
               </div>
-              <h1 id="form-heading" class="text-2xl sm:text-3xl font-extrabold tracking-tight mt-1 text-white">Competition & Award Subsidy Scheme</h1>
-              <p class="text-xs sm:text-sm text-rose-100/90 mt-1 max-w-xl">
+              <h1 id="form-heading" class="text-[23px] sm:text-[29px] font-extrabold tracking-tight leading-tight mt-1 text-white">Competition & Award Subsidy Scheme</h1>
+              <p class="text-[15px] text-rose-100/90 mt-1.5 max-w-xl">
                 School of Design Financial Assistance for Enrolled Students & 2025 Recent Graduates.
               </p>
             </div>
-            <div class="bg-[#741523] rounded-xl p-3.5 px-4 text-right border border-rose-300/20 flex-shrink-0">
-              <span class="text-[10px] uppercase font-bold tracking-wider text-rose-200 block">APPLICATION REF</span>
-              <span class="text-xs font-mono font-bold text-white block">SD-SUB-2025-0914</span>
-              <span class="text-[10px] uppercase font-bold tracking-wider text-rose-200 block mt-1">REMAINING CAP</span>
-              <span class="text-sm font-black text-white">$12,500 <span class="text-[11px] font-normal text-rose-200">/ 15,000</span></span>
+            <div class="bg-[#741523] rounded-xl p-4 px-5 text-right border border-rose-300/20 flex-shrink-0">
+              <span class="text-[15px] uppercase font-bold tracking-wider text-rose-200 block">APPLICATION REF</span>
+              <span class="text-[15px] font-mono font-bold text-white block">SD-SUB-2025-0914</span>
+              <span class="text-[15px] uppercase font-bold tracking-wider text-rose-200 block mt-2">REMAINING CAP</span>
+              <span class="text-[19px] font-black text-white">$12,500 <span class="text-[15px] font-normal text-rose-200">/ 15,000</span></span>
             </div>
           </div>
         </div>
@@ -681,18 +681,18 @@
 
           <!-- Section 01: APPLICANT’S INFORMATION -->
           <fieldset class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm space-y-5">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
               <div class="flex items-center gap-3">
-                <span class="w-8 h-8 rounded-full bg-[#8B1D2C] text-white flex items-center justify-center font-bold text-sm">
+                <span class="w-9 h-9 rounded-full bg-[#8B1D2C] text-white flex items-center justify-center font-bold text-[15px] flex-shrink-0">
                   01
                 </span>
                 <div>
-                  <h2 class="text-[16px] font-bold text-slate-900 tracking-wide uppercase">APPLICANT’S INFORMATION</h2>
-                  <p class="text-xs text-slate-500">Authenticated credentials via PolyU NetID Single Sign-On</p>
+                  <h2 class="text-[19px] font-bold text-slate-900 tracking-wide uppercase">APPLICANT’S INFORMATION</h2>
+                  <p class="text-[15px] text-slate-500">Authenticated credentials via PolyU NetID Single Sign-On</p>
                 </div>
               </div>
-              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700 border border-slate-200">
-                <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[15px] font-bold bg-slate-100 text-slate-700 border border-slate-200">
+                <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                 </svg>
                 NETID VERIFIED
@@ -702,14 +702,14 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <!-- Title & Full Name -->
               <div>
-                <label class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">Title & Full Name</label>
+                <label class="block text-[15px] font-bold uppercase tracking-wide text-slate-700 mb-1.5">Title & Full Name</label>
                 <div class="flex gap-2">
                   <div class="inline-flex rounded-lg border border-slate-200 p-0.5 bg-slate-50">
                     <button
                       type="button"
                       id="prefix-mr"
                       onclick="setPrefix('Mr')"
-                      class="px-2.5 py-1.5 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition"
+                      class="px-3 py-1.5 rounded-md text-[15px] font-semibold text-slate-600 hover:text-slate-900 transition"
                     >
                       Mr
                     </button>
@@ -717,7 +717,7 @@
                       type="button"
                       id="prefix-ms"
                       onclick="setPrefix('Ms')"
-                      class="px-2.5 py-1.5 rounded-md text-xs font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30"
+                      class="px-3 py-1.5 rounded-md text-[15px] font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30"
                     >
                       Ms
                     </button>
@@ -728,119 +728,119 @@
                     name="applicant_name"
                     value="Rachel Tsang"
                     required
-                    class="flex-1 px-3.5 py-2 rounded-lg border border-slate-200 text-sm font-semibold text-slate-800 bg-slate-50/50 focus:bg-white focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
+                    class="flex-1 px-3.5 py-2 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-800 bg-slate-50/50 focus:bg-white focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
                   />
                 </div>
               </div>
 
               <!-- Student ID Number -->
               <div>
-                <label for="student-id" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">Student ID Number</label>
+                <label for="student-id" class="block text-[15px] font-bold uppercase tracking-wide text-slate-700 mb-1.5">Student ID Number</label>
                 <input
                   type="text"
                   id="student-id"
                   name="student_id"
                   value="22084912D"
                   readonly
-                  class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-sm font-semibold text-slate-800 bg-slate-100 cursor-not-allowed"
+                  class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-800 bg-slate-100 cursor-not-allowed"
                 />
               </div>
 
               <!-- Telephone Number (Mobile) -->
               <div>
-                <label for="telephone" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">Telephone Number (Mobile)</label>
+                <label for="telephone" class="block text-[15px] font-bold uppercase tracking-wide text-slate-700 mb-1.5">Telephone Number (Mobile)</label>
                 <input
                   type="tel"
                   id="telephone"
                   name="telephone"
                   value="+852 9123 4567"
                   required
-                  class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-sm font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
+                  class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
                 />
               </div>
 
               <!-- PolyU Student Email -->
               <div>
-                <label for="student-email" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">PolyU Student Email</label>
+                <label for="student-email" class="block text-[15px] font-bold uppercase tracking-wide text-slate-700 mb-1.5">PolyU Student Email</label>
                 <input
                   type="email"
                   id="student-email"
                   name="student_email"
                   value="rachel.tsang@connect.polyu.hk"
                   readonly
-                  class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-sm font-semibold text-slate-800 bg-slate-100 cursor-not-allowed"
+                  class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-800 bg-slate-100 cursor-not-allowed"
                 />
               </div>
             </div>
 
             <!-- Study Year & Status -->
             <div>
-              <label class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-2">Study Year & Status</label>
+              <label class="block text-[15px] font-bold uppercase tracking-wide text-slate-700 mb-2">Study Year & Status</label>
               <div class="grid grid-cols-2 sm:grid-cols-5 gap-2" id="study-year-group">
-                <button type="button" onclick="setStudyYear(this, 'Year 1')" class="year-btn py-2 px-3 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50">Year 1</button>
-                <button type="button" onclick="setStudyYear(this, 'Year 2')" class="year-btn py-2 px-3 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50">Year 2</button>
-                <button type="button" onclick="setStudyYear(this, 'Year 3')" class="year-btn active py-2 px-3 rounded-lg border-2 border-[#8B1D2C] bg-rose-50/50 text-xs font-bold text-[#8B1D2C]">Year 3</button>
-                <button type="button" onclick="setStudyYear(this, 'Year 4')" class="year-btn py-2 px-3 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50">Year 4</button>
-                <button type="button" onclick="setStudyYear(this, '2025 Grad')" class="year-btn py-2 px-3 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50">2025 Grad</button>
+                <button type="button" onclick="setStudyYear(this, 'Year 1')" class="year-btn py-2 px-3 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-600 hover:bg-slate-50">Year 1</button>
+                <button type="button" onclick="setStudyYear(this, 'Year 2')" class="year-btn py-2 px-3 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-600 hover:bg-slate-50">Year 2</button>
+                <button type="button" onclick="setStudyYear(this, 'Year 3')" class="year-btn active py-2 px-3 rounded-lg border-2 border-[#8B1D2C] bg-rose-50/50 text-[15px] font-bold text-[#8B1D2C]">Year 3</button>
+                <button type="button" onclick="setStudyYear(this, 'Year 4')" class="year-btn py-2 px-3 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-600 hover:bg-slate-50">Year 4</button>
+                <button type="button" onclick="setStudyYear(this, '2025 Grad')" class="year-btn py-2 px-3 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-600 hover:bg-slate-50">2025 Grad</button>
               </div>
             </div>
 
             <!-- BA (Hons) Scheme in Design Discipline -->
             <div>
-              <div class="flex items-center justify-between mb-2">
-                <label class="block text-xs font-bold uppercase tracking-wide text-slate-700">BA (Hons) Scheme in Design Discipline</label>
-                <span class="text-[11px] text-slate-400">Select enrolled specialism</span>
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <label class="block text-[15px] font-bold uppercase tracking-wide text-slate-700">BA (Hons) Scheme in Design Discipline</label>
+                <span class="text-[15px] text-slate-400">Select enrolled specialism</span>
               </div>
-              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="discipline-grid">
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2" id="discipline-grid">
                 <!-- 12 Disciplines as in Figma mockup -->
-                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-[15px] font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
                   <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
                   <span class="truncate">Advertising Design</span>
                 </button>
-                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-[15px] font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
                   <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
                   <span class="truncate">Communication</span>
                 </button>
-                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-[15px] font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
                   <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
                   <span class="truncate">Environment Design</span>
                 </button>
-                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-[15px] font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
                   <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
                   <span class="truncate">Information Design</span>
                 </button>
 
-                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-[15px] font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
                   <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
                   <span class="truncate">Interaction Design</span>
                 </button>
-                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-[15px] font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
                   <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
                   <span class="truncate">Interior Design</span>
                 </button>
                 <!-- Selected: Media Design -->
-                <button type="button" onclick="setDiscipline(this)" class="disc-btn active p-2.5 rounded-lg border-2 border-[#8B1D2C] bg-rose-50/40 text-left text-xs font-bold text-[#8B1D2C] flex items-center gap-2">
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn active p-2.5 rounded-lg border-2 border-[#8B1D2C] bg-rose-50/40 text-left text-[15px] font-bold text-[#8B1D2C] flex items-center gap-2">
                   <span class="w-3.5 h-3.5 rounded-full border-4 border-[#8B1D2C] bg-white flex-shrink-0 disc-radio"></span>
                   <span class="truncate">Media Design</span>
                 </button>
-                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-[15px] font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
                   <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
                   <span class="truncate">Product Design</span>
                 </button>
 
-                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-[15px] font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
                   <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
                   <span class="truncate">Product Experience</span>
                 </button>
-                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-[15px] font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
                   <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
                   <span class="truncate">Service Design</span>
                 </button>
-                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-[15px] font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
                   <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
                   <span class="truncate">Social Design</span>
                 </button>
-                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
+                <button type="button" onclick="setDiscipline(this)" class="disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-[15px] font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2">
                   <span class="w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio"></span>
                   <span class="truncate">Other Specialism</span>
                 </button>
@@ -851,18 +851,18 @@
           <!-- Section 02: COMPETITION & AWARD PROFILE -->
           <fieldset class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm space-y-5">
             <div class="flex items-center gap-3 border-b border-slate-100 pb-3">
-              <span class="w-8 h-8 rounded-full bg-[#8B1D2C] text-white flex items-center justify-center font-bold text-sm">
+              <span class="w-9 h-9 rounded-full bg-[#8B1D2C] text-white flex items-center justify-center font-bold text-[15px] flex-shrink-0">
                 02
               </span>
               <div>
-                <h2 class="text-[16px] font-bold text-slate-900 tracking-wide uppercase">COMPETITION & AWARD PROFILE</h2>
-                <p class="text-xs text-slate-500">External organizer credentials and recognition tier</p>
+                <h2 class="text-[19px] font-bold text-slate-900 tracking-wide uppercase">COMPETITION & AWARD PROFILE</h2>
+                <p class="text-[15px] text-slate-500">External organizer credentials and recognition tier</p>
               </div>
             </div>
 
             <!-- Title of Competition -->
             <div>
-              <label for="competition-title" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+              <label for="competition-title" class="block text-[15px] font-bold uppercase tracking-wide text-slate-700 mb-1.5">
                 Title of Competition / Award <span class="text-[#8B1D2C]">*</span>
               </label>
               <input
@@ -871,14 +871,14 @@
                 name="competition_title"
                 value="Red Dot Award: Brands & Communication Design 2025"
                 required
-                class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 text-sm font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
+                class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
               />
             </div>
 
             <!-- Official Entry URL & Category -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label for="entry-url" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                <label for="entry-url" class="block text-[15px] font-bold uppercase tracking-wide text-slate-700 mb-1.5">
                   Official Entry URL <span class="text-[#8B1D2C]">*</span>
                 </label>
                 <div class="relative">
@@ -893,19 +893,19 @@
                     name="entry_url"
                     value="https://www.red-dot.org/brands-communica"
                     required
-                    class="w-full pl-9 pr-3.5 py-2 rounded-lg border border-slate-200 text-sm font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
+                    class="w-full pl-9 pr-3.5 py-2 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
                   />
                 </div>
               </div>
 
               <div>
-                <label for="category" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">Category (If Any)</label>
+                <label for="category" class="block text-[15px] font-bold uppercase tracking-wide text-slate-700 mb-1.5">Category (If Any)</label>
                 <input
                   type="text"
                   id="category"
                   name="category"
                   value="Digital Media / Interface & User Experience"
-                  class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-sm font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
+                  class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
                 />
               </div>
             </div>
@@ -913,16 +913,16 @@
             <!-- Recognition Level & Result Announcement Date -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-2">Recognition Level</label>
-                <div class="grid grid-cols-3 gap-2" id="recognition-level-group">
-                  <button type="button" onclick="setRecognition(this, 'Local')" class="rec-btn py-2 px-3 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50">Local</button>
-                  <button type="button" onclick="setRecognition(this, 'National')" class="rec-btn py-2 px-3 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50">National</button>
-                  <button type="button" onclick="setRecognition(this, 'International')" class="rec-btn active py-2 px-3 rounded-lg border-2 border-[#8B1D2C] bg-rose-50/50 text-xs font-bold text-[#8B1D2C]">International</button>
+                <label class="block text-[15px] font-bold uppercase tracking-wide text-slate-700 mb-2">Recognition Level</label>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2" id="recognition-level-group">
+                  <button type="button" onclick="setRecognition(this, 'Local')" class="rec-btn py-2 px-3 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-600 hover:bg-slate-50">Local</button>
+                  <button type="button" onclick="setRecognition(this, 'National')" class="rec-btn py-2 px-3 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-600 hover:bg-slate-50">National</button>
+                  <button type="button" onclick="setRecognition(this, 'International')" class="rec-btn active py-2 px-3 rounded-lg border-2 border-[#8B1D2C] bg-rose-50/50 text-[15px] font-bold text-[#8B1D2C]">International</button>
                 </div>
               </div>
 
               <div>
-                <label for="result-date" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                <label for="result-date" class="block text-[15px] font-bold uppercase tracking-wide text-slate-700 mb-1.5">
                   Result Announcement Date <span class="text-[#8B1D2C]">*</span>
                 </label>
                 <div class="relative">
@@ -937,7 +937,7 @@
                     name="result_date"
                     value="15/10/2025"
                     required
-                    class="w-full pl-9 pr-3.5 py-2 rounded-lg border border-slate-200 text-sm font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
+                    class="w-full pl-9 pr-3.5 py-2 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
                   />
                 </div>
               </div>
@@ -947,18 +947,18 @@
           <!-- Section 03: PROJECT DETAILS & BUDGET -->
           <fieldset class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm space-y-5">
             <div class="flex items-center gap-3 border-b border-slate-100 pb-3">
-              <span class="w-8 h-8 rounded-full bg-[#8B1D2C] text-white flex items-center justify-center font-bold text-sm">
+              <span class="w-9 h-9 rounded-full bg-[#8B1D2C] text-white flex items-center justify-center font-bold text-[15px] flex-shrink-0">
                 03
               </span>
               <div>
-                <h2 class="text-[16px] font-bold text-slate-900 tracking-wide uppercase">PROJECT DETAILS & BUDGET</h2>
-                <p class="text-xs text-slate-500">Academic endorsement, team members, and estimated fee breakdown</p>
+                <h2 class="text-[19px] font-bold text-slate-900 tracking-wide uppercase">PROJECT DETAILS & BUDGET</h2>
+                <p class="text-[15px] text-slate-500">Academic endorsement, team members, and estimated fee breakdown</p>
               </div>
             </div>
 
             <!-- Title of Submitted Project -->
             <div>
-              <label for="project-title" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+              <label for="project-title" class="block text-[15px] font-bold uppercase tracking-wide text-slate-700 mb-1.5">
                 Title of Submitted Project <span class="text-[#8B1D2C]">*</span>
               </label>
               <input
@@ -967,62 +967,62 @@
                 name="project_title"
                 value="Sensory Oasis: Multimodal Adaptive Workspace"
                 required
-                class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 text-sm font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
+                class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
               />
             </div>
 
             <!-- Group Project Toggle & Members -->
             <div class="space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold uppercase tracking-wide text-slate-700">Is It a Group Project?</span>
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="text-[15px] font-bold uppercase tracking-wide text-slate-700">Is It a Group Project?</span>
                 <div class="inline-flex rounded-lg border border-slate-200 p-0.5 bg-slate-50">
-                  <button type="button" id="grp-no" onclick="setGroupProject(false)" class="px-3 py-1 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition">No</button>
-                  <button type="button" id="grp-yes" onclick="setGroupProject(true)" class="px-3 py-1 rounded-md text-xs font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30">Yes</button>
+                  <button type="button" id="grp-no" onclick="setGroupProject(false)" class="px-3.5 py-1 rounded-md text-[15px] font-semibold text-slate-600 hover:text-slate-900 transition">No</button>
+                  <button type="button" id="grp-yes" onclick="setGroupProject(true)" class="px-3.5 py-1 rounded-md text-[15px] font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30">Yes</button>
                 </div>
               </div>
 
               <div id="group-members-field">
-                <label for="group-members" class="block text-xs font-semibold text-slate-600 mb-1">Other Group Member(s) from School of Design</label>
+                <label for="group-members" class="block text-[15px] font-semibold text-slate-600 mb-1">Other Group Member(s) from School of Design</label>
                 <input
                   type="text"
                   id="group-members"
                   name="group_members"
                   value="Marcus Leung (22081145D), Chloe Wong (22079934D)"
-                  class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-sm font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
+                  class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
                 />
-                <p class="text-[11px] text-slate-400 mt-1">Please list full name & PolyU student ID separated by commas.</p>
+                <p class="text-[15px] text-slate-400 mt-1">Please list full name & PolyU student ID separated by commas.</p>
               </div>
             </div>
 
             <!-- Coursework & Endorser Name -->
             <div class="space-y-3 pt-2 border-t border-slate-100">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold uppercase tracking-wide text-slate-700">Is This Coursework from a PolyU Subject?</span>
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="text-[15px] font-bold uppercase tracking-wide text-slate-700">Is This Coursework from a PolyU Subject?</span>
                 <div class="inline-flex rounded-lg border border-slate-200 p-0.5 bg-slate-50">
-                  <button type="button" id="cw-no" onclick="setCoursework(false)" class="px-3 py-1 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition">No</button>
-                  <button type="button" id="cw-yes" onclick="setCoursework(true)" class="px-3 py-1 rounded-md text-xs font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30">Yes</button>
+                  <button type="button" id="cw-no" onclick="setCoursework(false)" class="px-3.5 py-1 rounded-md text-[15px] font-semibold text-slate-600 hover:text-slate-900 transition">No</button>
+                  <button type="button" id="cw-yes" onclick="setCoursework(true)" class="px-3.5 py-1 rounded-md text-[15px] font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30">Yes</button>
                 </div>
               </div>
 
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label for="subject-title" class="block text-xs font-semibold text-slate-600 mb-1">Subject Code & Title</label>
+                  <label for="subject-title" class="block text-[15px] font-semibold text-slate-600 mb-1">Subject Code & Title</label>
                   <input
                     type="text"
                     id="subject-title"
                     name="subject_title"
                     value="SD3102 Advanced Interaction Studio"
-                    class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-sm font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
+                    class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
                   />
                 </div>
                 <div>
-                  <label for="tutor-name" class="block text-xs font-semibold text-slate-600 mb-1">Tutor / Endorser Name</label>
+                  <label for="tutor-name" class="block text-[15px] font-semibold text-slate-600 mb-1">Tutor / Endorser Name</label>
                   <input
                     type="text"
                     id="tutor-name"
                     name="tutor_name"
                     value="Dr. K. Wong"
-                    class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-sm font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
+                    class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]"
                   />
                 </div>
               </div>
@@ -1030,39 +1030,39 @@
 
             <!-- Applying for Subsidy Grant Items -->
             <div class="pt-2 border-t border-slate-100 space-y-3">
-              <label class="block text-xs font-bold uppercase tracking-wide text-slate-700">Applying for Subsidy Grant Item(s)</label>
+              <label class="block text-[15px] font-bold uppercase tracking-wide text-slate-700">Applying for Subsidy Grant Item(s)</label>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <!-- Card 1: Entrance Fee's Subsidy (Checked) -->
                 <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/60 space-y-3">
-                  <label class="flex items-center gap-2 cursor-pointer">
+                  <label class="flex items-center gap-2.5 cursor-pointer">
                     <input type="checkbox" id="check-entrance" checked onchange="toggleSubsidyItem('entrance')" class="w-4 h-4 text-[#8B1D2C] rounded border-slate-300 focus:ring-[#8B1D2C]" />
-                    <span class="text-xs font-bold text-slate-800 uppercase tracking-wide">Entrance Fee's Subsidy</span>
+                    <span class="text-[15px] font-bold text-slate-800 uppercase tracking-wide">Entrance Fee's Subsidy</span>
                   </label>
-                  <div class="grid grid-cols-2 gap-2" id="entrance-fields">
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="entrance-fields">
                     <div>
-                      <span class="block text-[10px] uppercase font-bold text-slate-400 mb-1">CURRENCY</span>
-                      <select class="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm font-semibold bg-white text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]">
+                      <span class="block text-[15px] uppercase font-bold text-slate-500 mb-1">CURRENCY</span>
+                      <select class="w-full px-3 py-2 rounded-lg border border-slate-200 text-[15px] font-semibold bg-white text-slate-800 focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]">
                         <option>HKD (HK$)</option>
                         <option>USD ($)</option>
                         <option>EUR (€)</option>
                       </select>
                     </div>
                     <div>
-                      <span class="block text-[10px] uppercase font-bold text-slate-400 mb-1">CLAIM AMOUNT</span>
-                      <input type="number" id="claim-entrance-amount" value="2400" class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-sm font-semibold text-slate-800 bg-white focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]" />
+                      <span class="block text-[15px] uppercase font-bold text-slate-500 mb-1">CLAIM AMOUNT</span>
+                      <input type="number" id="claim-entrance-amount" value="2400" class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-800 bg-white focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]" />
                     </div>
                   </div>
                 </div>
 
                 <!-- Card 2: Physical Model Shipping Allowance (Unchecked) -->
                 <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/60 space-y-3">
-                  <label class="flex items-center gap-2 cursor-pointer">
+                  <label class="flex items-center gap-2.5 cursor-pointer">
                     <input type="checkbox" id="check-shipping" onchange="toggleSubsidyItem('shipping')" class="w-4 h-4 text-[#8B1D2C] rounded border-slate-300 focus:ring-[#8B1D2C]" />
-                    <span class="text-xs font-bold text-slate-800 uppercase tracking-wide">Physical Model Shipping Allowance</span>
+                    <span class="text-[15px] font-bold text-slate-800 uppercase tracking-wide">Physical Model Shipping Allowance</span>
                   </label>
                   <div>
-                    <span class="block text-[10px] uppercase font-bold text-slate-400 mb-1">ESTIMATED AMOUNT (HK$)</span>
-                    <input type="number" id="claim-shipping-amount" value="0.00" disabled class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-sm font-semibold text-slate-400 bg-slate-100 cursor-not-allowed focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]" />
+                    <span class="block text-[15px] uppercase font-bold text-slate-500 mb-1">ESTIMATED AMOUNT (HK$)</span>
+                    <input type="number" id="claim-shipping-amount" value="0.00" disabled class="w-full px-3.5 py-2 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-400 bg-slate-100 cursor-not-allowed focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]" />
                   </div>
                 </div>
               </div>
@@ -1072,39 +1072,39 @@
           <!-- Section 04: DECLARATIONS & SIGN-OFF -->
           <fieldset class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm space-y-5">
             <div class="flex items-center gap-3 border-b border-slate-100 pb-3">
-              <span class="w-8 h-8 rounded-full bg-[#8B1D2C] text-white flex items-center justify-center font-bold text-sm">
+              <span class="w-9 h-9 rounded-full bg-[#8B1D2C] text-white flex items-center justify-center font-bold text-[15px] flex-shrink-0">
                 04
               </span>
               <div>
-                <h2 class="text-[16px] font-bold text-slate-900 tracking-wide uppercase">DECLARATIONS & SIGN-OFF</h2>
-                <p class="text-xs text-slate-500">Official compliance certifications and digital authorization</p>
+                <h2 class="text-[19px] font-bold text-slate-900 tracking-wide uppercase">DECLARATIONS & SIGN-OFF</h2>
+                <p class="text-[15px] text-slate-500">Official compliance certifications and digital authorization</p>
               </div>
             </div>
 
             <!-- Mandatory Legal Checkboxes -->
             <div class="space-y-3">
-              <label class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 cursor-pointer hover:bg-slate-100/70 transition">
+              <label class="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 cursor-pointer hover:bg-slate-100/70 transition">
                 <input
                   type="checkbox"
                   id="decl-1"
                   required
                   checked
-                  class="mt-1 w-4 h-4 text-[#8B1D2C] rounded border-slate-300 focus:ring-[#8B1D2C]"
+                  class="mt-1.5 w-4 h-4 text-[#8B1D2C] rounded border-slate-300 focus:ring-[#8B1D2C]"
                 />
-                <span class="text-xs text-slate-700 leading-relaxed">
+                <span class="text-[15px] text-slate-700 leading-relaxed">
                   I declare that this entry is <strong class="underline decoration-[#8B1D2C] decoration-2">not</strong> supported by any other PolyU or governmental external financial scheme(s).
                 </span>
               </label>
 
-              <label class="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200/80 cursor-pointer hover:bg-slate-100/70 transition">
+              <label class="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 cursor-pointer hover:bg-slate-100/70 transition">
                 <input
                   type="checkbox"
                   id="decl-2"
                   required
                   checked
-                  class="mt-1 w-4 h-4 text-[#8B1D2C] rounded border-slate-300 focus:ring-[#8B1D2C]"
+                  class="mt-1.5 w-4 h-4 text-[#8B1D2C] rounded border-slate-300 focus:ring-[#8B1D2C]"
                 />
-                <span class="text-xs text-slate-700 leading-relaxed">
+                <span class="text-[15px] text-slate-700 leading-relaxed">
                   I confirm that this application complies strictly with the terms and regulations of the Scheme document. I understand and agree that should there be any violation of the terms the application or any approved amount shall be canceled immediately.
                 </span>
               </label>
@@ -1114,36 +1114,36 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
               <!-- Signature 1: Applicant -->
               <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-2">
-                <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 block">SIGNATURE OF APPLICANT</span>
+                <span class="text-[15px] uppercase font-bold tracking-wider text-slate-500 block">SIGNATURE OF APPLICANT</span>
                 <div class="flex items-center justify-between">
                   <div>
-                    <p class="text-base font-bold text-[#8B1D2C]">Rachel Tsang</p>
-                    <p class="text-xs text-slate-500">Date: 18/02/2025</p>
+                    <p class="text-[19px] font-bold text-[#8B1D2C]">Rachel Tsang</p>
+                    <p class="text-[15px] text-slate-500">Date: 18/02/2025</p>
                   </div>
-                  <div class="w-8 h-8 rounded-full bg-rose-100 text-[#8B1D2C] flex items-center justify-center">
+                  <div class="w-9 h-9 rounded-full bg-rose-100 text-[#8B1D2C] flex items-center justify-center">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                       <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                     </svg>
                   </div>
                 </div>
-                <p class="text-[11px] text-slate-400">Secured via PolyU Single Sign-On (NetID: racheltsang)</p>
+                <p class="text-[15px] text-slate-400">Secured via PolyU Single Sign-On (NetID: racheltsang)</p>
               </div>
 
               <!-- Signature 2: Academic Endorser -->
               <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-2">
-                <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 block">ASSIGNED ACADEMIC ENDORSER</span>
+                <span class="text-[15px] uppercase font-bold tracking-wider text-slate-500 block">ASSIGNED ACADEMIC ENDORSER</span>
                 <div class="flex items-center justify-between">
                   <div>
-                    <p class="text-base font-bold text-slate-800">Dr. K. Wong</p>
-                    <p class="text-xs text-slate-500">Subject Tutor • SD3102 Studio</p>
+                    <p class="text-[19px] font-bold text-slate-800">Dr. K. Wong</p>
+                    <p class="text-[15px] text-slate-500">Subject Tutor • SD3102 Studio</p>
                   </div>
-                  <div class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center">
+                  <div class="w-9 h-9 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
                 </div>
-                <p class="text-[11px] text-slate-400">Digital endorsement request will trigger via university email on submission.</p>
+                <p class="text-[15px] text-slate-400">Digital endorsement request will trigger via university email on submission.</p>
               </div>
             </div>
           </fieldset>
@@ -1151,14 +1151,14 @@
           <!-- Form Action Footer Bar -->
           <div class="sticky bottom-20 z-30 bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200/90 p-4 shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-3">
-              <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center">
+              <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center flex-shrink-0">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
               <div>
-                <p class="text-xs font-bold text-slate-900">Ready for Departmental Submission</p>
-                <p class="text-[11px] text-slate-500">All 4 mandatory sections completed</p>
+                <p class="text-[15px] font-bold text-slate-900">Ready for Departmental Submission</p>
+                <p class="text-[15px] text-slate-500">All 4 mandatory sections completed</p>
               </div>
             </div>
 
@@ -1166,14 +1166,14 @@
               <button
                 type="button"
                 onclick="saveDraft()"
-                class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl border border-[#8B1D2C] text-[#8B1D2C] hover:bg-rose-50 text-xs font-bold transition tracking-wide"
+                class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl border border-[#8B1D2C] text-[#8B1D2C] hover:bg-rose-50 text-[15px] font-bold transition tracking-wide"
               >
                 SAVE DRAFT
               </button>
               <button
                 type="submit"
                 id="btn-submit-app"
-                class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-[#8B1D2C] hover:bg-[#741523] text-white text-xs font-bold transition shadow-sm hover:shadow"
+                class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-[#8B1D2C] hover:bg-[#741523] text-white text-[15px] font-bold transition shadow-sm hover:shadow"
               >
                 <span>SUBMIT APPLICATION</span>
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2292,30 +2292,30 @@
         const mr = document.getElementById('prefix-mr');
         const ms = document.getElementById('prefix-ms');
         if (val === 'Mr') {
-          mr.className = 'px-2.5 py-1.5 rounded-md text-xs font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30';
-          ms.className = 'px-2.5 py-1.5 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition';
+          mr.className = 'px-3 py-1.5 rounded-md text-[15px] font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30';
+          ms.className = 'px-3 py-1.5 rounded-md text-[15px] font-semibold text-slate-600 hover:text-slate-900 transition';
         } else {
-          ms.className = 'px-2.5 py-1.5 rounded-md text-xs font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30';
-          mr.className = 'px-2.5 py-1.5 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition';
+          ms.className = 'px-3 py-1.5 rounded-md text-[15px] font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30';
+          mr.className = 'px-3 py-1.5 rounded-md text-[15px] font-semibold text-slate-600 hover:text-slate-900 transition';
         }
       }
 
       function setStudyYear(btn, year) {
         document.querySelectorAll('#study-year-group .year-btn').forEach((b) => {
-          b.className = 'year-btn py-2 px-3 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50';
+          b.className = 'year-btn py-2 px-3 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-600 hover:bg-slate-50';
         });
-        btn.className = 'year-btn active py-2 px-3 rounded-lg border-2 border-[#8B1D2C] bg-rose-50/50 text-xs font-bold text-[#8B1D2C]';
+        btn.className = 'year-btn active py-2 px-3 rounded-lg border-2 border-[#8B1D2C] bg-rose-50/50 text-[15px] font-bold text-[#8B1D2C]';
       }
 
       function setDiscipline(btn) {
         document.querySelectorAll('#discipline-grid .disc-btn').forEach((b) => {
-          b.className = 'disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-xs font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2';
+          b.className = 'disc-btn p-2.5 rounded-lg border border-slate-200 text-left text-[15px] font-medium text-slate-700 hover:bg-slate-50 flex items-center gap-2';
           const radio = b.querySelector('.disc-radio');
           if (radio) {
             radio.className = 'w-3.5 h-3.5 rounded-full border border-slate-300 flex-shrink-0 disc-radio';
           }
         });
-        btn.className = 'disc-btn active p-2.5 rounded-lg border-2 border-[#8B1D2C] bg-rose-50/40 text-left text-xs font-bold text-[#8B1D2C] flex items-center gap-2';
+        btn.className = 'disc-btn active p-2.5 rounded-lg border-2 border-[#8B1D2C] bg-rose-50/40 text-left text-[15px] font-bold text-[#8B1D2C] flex items-center gap-2';
         const activeRadio = btn.querySelector('.disc-radio');
         if (activeRadio) {
           activeRadio.className = 'w-3.5 h-3.5 rounded-full border-4 border-[#8B1D2C] bg-white flex-shrink-0 disc-radio';
@@ -2324,9 +2324,9 @@
 
       function setRecognition(btn, level) {
         document.querySelectorAll('#recognition-level-group .rec-btn').forEach((b) => {
-          b.className = 'rec-btn py-2 px-3 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50';
+          b.className = 'rec-btn py-2 px-3 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-600 hover:bg-slate-50';
         });
-        btn.className = 'rec-btn active py-2 px-3 rounded-lg border-2 border-[#8B1D2C] bg-rose-50/50 text-xs font-bold text-[#8B1D2C]';
+        btn.className = 'rec-btn active py-2 px-3 rounded-lg border-2 border-[#8B1D2C] bg-rose-50/50 text-[15px] font-bold text-[#8B1D2C]';
       }
 
       function setGroupProject(isYes) {
@@ -2334,12 +2334,12 @@
         const yesBtn = document.getElementById('grp-yes');
         const field = document.getElementById('group-members-field');
         if (isYes) {
-          yesBtn.className = 'px-3 py-1 rounded-md text-xs font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30';
-          noBtn.className = 'px-3 py-1 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition';
+          yesBtn.className = 'px-3.5 py-1 rounded-md text-[15px] font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30';
+          noBtn.className = 'px-3.5 py-1 rounded-md text-[15px] font-semibold text-slate-600 hover:text-slate-900 transition';
           field.classList.remove('hidden');
         } else {
-          noBtn.className = 'px-3 py-1 rounded-md text-xs font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30';
-          yesBtn.className = 'px-3 py-1 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition';
+          noBtn.className = 'px-3.5 py-1 rounded-md text-[15px] font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30';
+          yesBtn.className = 'px-3.5 py-1 rounded-md text-[15px] font-semibold text-slate-600 hover:text-slate-900 transition';
           field.classList.add('hidden');
         }
       }
@@ -2348,11 +2348,11 @@
         const noBtn = document.getElementById('cw-no');
         const yesBtn = document.getElementById('cw-yes');
         if (isYes) {
-          yesBtn.className = 'px-3 py-1 rounded-md text-xs font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30';
-          noBtn.className = 'px-3 py-1 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition';
+          yesBtn.className = 'px-3.5 py-1 rounded-md text-[15px] font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30';
+          noBtn.className = 'px-3.5 py-1 rounded-md text-[15px] font-semibold text-slate-600 hover:text-slate-900 transition';
         } else {
-          noBtn.className = 'px-3 py-1 rounded-md text-xs font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30';
-          yesBtn.className = 'px-3 py-1 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition';
+          noBtn.className = 'px-3.5 py-1 rounded-md text-[15px] font-bold bg-white text-[#8B1D2C] shadow-2xs border border-[#8B1D2C]/30';
+          yesBtn.className = 'px-3.5 py-1 rounded-md text-[15px] font-semibold text-slate-600 hover:text-slate-900 transition';
         }
       }
 
@@ -2363,11 +2363,11 @@
           if (chk.checked) {
             amt.disabled = false;
             amt.value = '600.00';
-            amt.className = 'w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-mono font-bold text-slate-800 bg-white';
+            amt.className = 'w-full px-3.5 py-2 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-800 bg-white focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]';
           } else {
             amt.disabled = true;
             amt.value = '0.00';
-            amt.className = 'w-full px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-mono font-bold text-slate-400 bg-slate-100 cursor-not-allowed';
+            amt.className = 'w-full px-3.5 py-2 rounded-lg border border-slate-200 text-[15px] font-semibold text-slate-400 bg-slate-100 cursor-not-allowed focus:border-[#8B1D2C] focus:ring-1 focus:ring-[#8B1D2C]';
           }
         }
       }
